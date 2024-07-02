@@ -1,0 +1,63 @@
+/*
+ ##### Responsive Desgin Here ####
+*/
+@media (max-width: 768px) {
+    header,
+    .header {
+        display: none;
+        width: 75%;
+        animation: left-animation 0.2s linear;
+    }
+    nav,
+    .top-bar {
+        width: 100%;
+        left: 0;
+    }
+    .show-header {
+        display: block;
+        transition: 0.5s ease-in;
+    }
+    .top-bar a , .top-bar .top-bar-links {
+        display: none;
+    }
+    .top-bar button {
+        display: block;
+    }
+    .social-links a {
+        margin: 0.3rem 0.3rem;
+        padding: 0.5rem;
+    }
+    .nav-menu {
+        margin: 0;
+        padding: 0;
+    }
+    .nav-menu ul li a {
+        margin: 1rem auto;
+        padding: 0.5rem 0;
+    }
+    main {
+        left: 0;
+        width: 100%;
+    }
+    .container p,
+    #skills article,#projects article,#contact article {
+        max-width: 100%;
+        text-align: justify;
+        margin: 0.5rem auto;
+        padding: .3rem .5rem;
+    }
+    .footer {
+        left: 0;
+        width: 100%;
+    }
+    section #heading {
+        width: 70%;
+    }
+    .two-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .grid-row .col img {
+        width: 320px;
+    }
+}
