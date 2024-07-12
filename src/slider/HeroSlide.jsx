@@ -19,7 +19,7 @@ const Slider = () => {
                         store and continue shopping with us
                     </p>
                     <div className="btn-area">
-                        <a href="#" id="see-more">
+                        <a href="#products" id="see-more">
                             Continue Shopping
                         </a>
                     </div>
@@ -38,7 +38,7 @@ const Slider = () => {
                         store and continue shopping with us
                     </p>
                    <div className="btn-area">
-                        <a href="#" id="see-more">
+                        <a href="#products" id="see-more">
                             Continue Shopping
                         </a>
                     </div>
@@ -57,7 +57,7 @@ const Slider = () => {
                         store and continue shopping with us
                     </p>
                    <div className="btn-area">
-                        <a href="#" id="see-more">
+                        <a href="#products" id="see-more">
                             Continue Shopping
                         </a>
                     </div>

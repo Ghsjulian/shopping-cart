@@ -6,7 +6,7 @@ import tshirt_4 from "../assets/products/tshirt_4.png";
 
 const LatestProducts = () => {
     return (
-        <section className="page">
+        <section data-aos="zoom-in" className="page" id="products">
             <h2>Our Latest Products</h2>
             <p id="desc">
                 Explore our new updated in stock products, Our latest products
@@ -14,14 +14,18 @@ const LatestProducts = () => {
                 order or cart now.
             </p>
             <div className="grid-area">
-                <div className="grid-col">
+                <div data-aos="zoom-in" className="grid-col">
                     <img src={tshirt_1} />
                     <span>Price : 80$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                     <div className="btn-area">
-                        <a href="#">View Product</a>
                         <a href="#">
-                            <i className="bx bx-cart"></i> Add Cart
+                            <i className="bx bx-show"></i>
+                            <span>View Product</span>
+                        </a>
+                        <a href="#">
+                            <i className="bx bxs-cart-add"></i>{" "}
+                            <span>Add Cart</span>
                         </a>
                     </div>
                 </div>
@@ -30,9 +34,13 @@ const LatestProducts = () => {
                     <span>Price : 180$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                     <div className="btn-area">
-                        <a href="#">View Product</a>
                         <a href="#">
-                            <i className="bx bx-cart"></i> Add Cart
+                            <i className="bx bx-show"></i>
+                            <span>View Product</span>
+                        </a>
+                        <a href="#">
+                            <i className="bx bxs-cart-add"></i>{" "}
+                            <span>Add Cart</span>
                         </a>
                     </div>
                 </div>
@@ -40,10 +48,14 @@ const LatestProducts = () => {
                     <img src={tshirt_3} />
                     <span>Price : 79$</span>
                     <h5>Full Sleeve T-Shirt </h5>
-                    <div className="btn-area">
-                        <a href="#">View Product</a>
+                     <div className="btn-area">
                         <a href="#">
-                            <i className="bx bx-cart"></i> Add Cart
+                            <i className="bx bx-show"></i>
+                            <span>View Product</span>
+                        </a>
+                        <a href="#">
+                            <i className="bx bxs-cart-add"></i>{" "}
+                            <span>Add Cart</span>
                         </a>
                     </div>
                 </div>
@@ -51,10 +63,14 @@ const LatestProducts = () => {
                     <img src={tshirt_4} />
                     <span>Price : 120$</span>
                     <h5>Full Sleeve T-Shirt </h5>
-                    <div className="btn-area">
-                        <a href="#">View Product</a>
+                     <div className="btn-area">
                         <a href="#">
-                            <i className="bx bx-cart"></i> Add Cart
+                            <i className="bx bx-show"></i>
+                            <span>View Product</span>
+                        </a>
+                        <a href="#">
+                            <i className="bx bxs-cart-add"></i>{" "}
+                            <span>Add Cart</span>
                         </a>
                     </div>
                 </div>

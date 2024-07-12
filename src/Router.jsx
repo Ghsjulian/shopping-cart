@@ -3,9 +3,10 @@ import Home from "./pages/Home";
 import About from "./components/AboutSection";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import Contact from "./components/Contact";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
 import NotFound from "./components/404";
-import LatestProducts from "./components/LatestProducts"
+import LatestProducts from "./components/LatestProducts";
 
 const MyRoutes = [
     {
@@ -26,10 +27,18 @@ const MyRoutes = [
         )
     },
     {
-        path: "/contact",
+        path: "/signup",
         element: (
             <Layouts>
-                <Contact isTrue={true} />
+                <Signup />
+            </Layouts>
+        )
+    },
+    {
+        path: "/login",
+        element: (
+            <Layouts>
+                <Login />
             </Layouts>
         )
     },

@@ -51,6 +51,9 @@
     color: #004d63;
 }
 .grid-col a {
+    display: flex;
+    align-items: center;
+    text-align: center;
     text-decoration: none;
     text-align: center;
     margin: 0.5rem auto;
@@ -61,6 +64,10 @@
     font-weight: 500;
     transition: 0.5s ease-in;
 }
+.grid-col a span {
+    display: block;
+    color: #fff;
+}
 .grid-col a i {
     font-size: 20.5px;
 }
@@ -68,4 +75,95 @@
     background: transparent;
     border: 1px solid #005f78;
     color: #005f78;
+}
+
+/* Signup Styling */
+.one-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+.signup-form {
+    max-width: 500px;
+    height: auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow:
+        2px 2px 4px #c7c7c7,
+        -2px -2px 4px #c7c7c7;
+    padding: 1rem 1.5rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.signup-form i {
+    color: #007fbd;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid #007fbd;
+    font-size: 5rem;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0.3rem auto;
+}
+.signup-form #message {
+    margin: 0.3rem auto;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.error {
+    color: #c74100;
+    border: 0.1px solid #c74100;
+    background: rgba(213, 54, 5, 0.21);
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.success {
+    color: #00cd0a;
+    border: 0.1px solid #00cd0a;
+    background: rgba(32,134,0,0.21);
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.signup-form input {
+    outline: none;
+    border-radius: 10px;
+    border: 1.5px solid #007fbd;
+    color: #007fbd;
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+    margin: 0.7rem auto;
+}
+input:focus {
+    border: 2px solid #05d411;
+}
+.signup-form strong {
+    color: #5c5c5c;
+    font-weight: 500;
+    margin: .3rem auto;
+}
+.signup-form strong a {
+    text-decoration: none;
+    color: #0026d4;
+}
+.signup-form .submit {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #006876;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem auto;
+    transition: 0.4s ease-in;
+}
+.submit:hover {
+    background: #008ff1;
 }

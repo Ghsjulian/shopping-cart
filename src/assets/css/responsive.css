@@ -67,14 +67,31 @@
     .grid-row .col img {
         width: 320px;
     }
-.carousel-item img {
-  width: 100vw;
-  height: auto;  /* Allow image to adapt proportionally */
-  object-fit: cover;  /* Ensure image fills the container */
-  display: block;  /* Make sure image behaves like a block element */
-}
-.page p,#desc{
-    width: 100%;
-    max-width: 100%;
-}
+    .carousel-item img {
+        width: 100vw;
+        height: auto; /* Allow image to adapt proportionally */
+        object-fit: cover; /* Ensure image fills the container */
+        display: block; /* Make sure image behaves like a block element */
+    }
+    .page p,
+    #desc {
+        width: 100%;
+        max-width: 100%;
+    }
+    .grid-area {
+        gap: 5px;
+        font-size: 13px;
+        grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(auto, 1fr));
+    }
+    .grid-col {
+        padding: .2rem .3rem;
+    }
+    .grid-area .grid-col img {
+        height: 150px;
+    }
+    .grid-area .grid-col .btn-area a span {
+        /* width: 45%; */
+        display: none;
+    }
 }

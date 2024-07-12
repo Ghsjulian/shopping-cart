@@ -22,6 +22,7 @@ const Header = () => {
         <>
             <header ref={headerRef} className="header" data-aos="zoom-in">
                 <div className="nav-menu" data-aos="zoom-in">
+                    <h2>Main Menu </h2>
                     <ul>
                         <li>
                             <NavLink
@@ -35,29 +36,87 @@ const Header = () => {
                         <li>
                             <NavLink
                                 onClick={closeHeader}
-                                to="/skills"
-                                className={path == "/skills" ? "active" : ""}
+                                to="/profile"
+                                className={path == "/profile" ? "active" : ""}
                             >
-                                <i className="ri ri-tools-fill"></i> My Skills
+                                <i className="bx bx-user-circle"></i>
+                                Profile
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 onClick={closeHeader}
-                                to="/projects"
-                                className={path == "/projects" ? "active" : ""}
+                                to="/notification"
+                                className={
+                                    path == "/notification" ? "active" : ""
+                                }
                             >
-                                <i className="ri ri-building-line"></i> Latest
-                                Projects
+                                <i className="bx bx-bell"></i>
+                                Notifications
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/cart"
+                                className={path == "/cart" ? "active" : ""}
+                            >
+                                <i className="bx bx-cart"></i> Cart
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/orders"
+                                className={path == "/orders" ? "active" : ""}
+                            >
+                                <i className="bx bx-shopping-bag"></i>
+                                Orders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/categories"
+                                className={
+                                    path == "/categories" ? "active" : ""
+                                }
+                            >
+                                <i className="bx bx-sitemap"></i>
+                                Categories
+                            </NavLink>
+                        </li>
+
+                        {/* If User Not Login */}
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/login"
+                                className={path == "/login" ? "active" : ""}
+                            >
+                                <i className="bx bx-log-in-circle"></i>
+                                Login
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/signup"
+                                className={path == "/signup" ? "active" : ""}
+                            >
+                                <i className="bx bx-user-plus"></i>
+                                Signup
+                            </NavLink>
+                        </li>
+                        {/* If User Not Login */}
+
                         <li>
                             <NavLink
                                 onClick={closeHeader}
                                 to="/about"
                                 className={path == "/about" ? "active" : ""}
                             >
-                                <i className="bx bx-user-circle"></i> About
+                                <i className="bx bx-info-circle"></i> About
                             </NavLink>
                         </li>
                         <li>
@@ -69,6 +128,19 @@ const Header = () => {
                                 <i className="bx  bxl-whatsapp"></i> Contact
                             </NavLink>
                         </li>
+                        {/*If User Logged In */}
+                        <li>
+                            <NavLink
+                                style={{ backgroundColor: "transparent" }}
+                                onClick={closeHeader}
+                                to="#"
+                                className={path == "/logout" ? "active" : ""}
+                            >
+                                <i className="bx bx-log-out-circle"></i>
+                                Logout
+                            </NavLink>
+                        </li>
+                        {/*If User Logged In */}
                     </ul>
                 </div>
             </header>
@@ -78,15 +150,15 @@ const Header = () => {
                     <i className={`bx bx-${isOpen ? "x" : "menu"}`}></i>
                 </button>
                 <div className="top-bar-links">
-                <NavLink to="/contact">
-                    <i className="bx bxl-whatsapp"></i>
-                </NavLink>
-                <NavLink to="/contact">
-                    <i className="bx bxl-whatsapp"></i>
-                </NavLink>
-                <NavLink to="/contact">
-                    <i className="bx bxl-whatsapp"></i>
-                </NavLink>
+                    <NavLink to="#">
+                        <i className="bx bx-search-alt-2"></i>
+                    </NavLink>
+                    <NavLink to="/notification">
+                        <i className="bx bx-bell"></i>
+                    </NavLink>
+                    <NavLink to="/cart">
+                        <i className="bx bx-cart"></i>
+                    </NavLink>
                 </div>
             </nav>
         </>

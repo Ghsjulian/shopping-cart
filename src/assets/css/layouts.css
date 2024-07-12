@@ -21,16 +21,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+    display: none;
+}
 html {
     scroll-behavior: smooth;
     font-size: 95%;
     font-family: poppin-bold, "Sans-Serif";
     --bg: #ecffff;
-    --header: #005873;
+    --header: #002c43;
     --nav: #005075;
     --btn: #004ff7;
 }
-
+a {
+    text-decoration: none;
+    outline: none;
+}
+li {
+    list-style-type: none;
+}
 body {
     font-family: "Open Sans", sans-serif;
     background: var(--bg);
@@ -125,23 +134,28 @@ header,
     webkit-box-shadow: none;
 }
 .header .nav-menu {
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: left;
-    text-align: left;
-    margin: 0.3rem 0;
-    padding: 0;
+    text-align: left !important;
+    margin: 0.3rem auto !important;
+    padding: 0.5rem 1rem;
     left: -2px;
+}
+.nav-menu h2 {
+    text-align: center;
+    margin: 0.5rem auto;
 }
 .nav-menu ul li a {
     text-decoration: none;
     display: flex;
     align-items: left;
     justify-content: left;
-    text-align: left;
+    text-align: center;
     font-size: 18px;
     color: #fff;
-    margin: 1rem 0.3rem;
+    margin: 1rem auto;
     padding: 0.5rem 0.7rem;
     border-radius: 5px;
 }
@@ -152,8 +166,8 @@ a:hover {
     border-radius: 8px;
 }
 .nav-menu ul li a i {
-    margin: 0 0.5rem;
-    font-size: 22px;
+    margin: 2px 0.5rem;
+    font-size: 23px;
     color: #1df9ff;
 }
 nav,
@@ -176,6 +190,8 @@ nav,
     align-items: center;
 }
 .top-bar a {
+    cursor: pointer;
+    text-decoration: none;
     color: #fff;
     background: transparent;
     border-radius: 12px;
@@ -184,6 +200,11 @@ nav,
     display: flex;
     text-align: center;
     align-items: center;
+}
+.top-bar-links a i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
 }
 .top-bar button {
     background: transparent;
