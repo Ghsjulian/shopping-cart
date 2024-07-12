@@ -1,0 +1,71 @@
+.page {
+    margin: 0.5rem 0;
+    padding: 0;
+}
+.page h2 {
+    color: #0086b5;
+    text-align: center;
+    margin: 0.5rem auto;
+}
+.page p,
+#desc {
+    color: #575757;
+    text-transform: capitalize;
+    line-height: 1.9rem;
+    text-align: center;
+    margin: 0.3rem auto;
+    max-width: 50%;
+}
+.grid-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(auto, 1fr));
+    gap: 10px;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.grid-area .grid-col {
+    height: 100%;
+    padding: 0.8rem 0.3rem;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow:
+        2px 2px 4px #c7c7c7,
+        -2px -2px 4px #c7c7c7;
+}
+.grid-col img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    margin: 0.3rem 0;
+    border-radius: 8px;
+}
+.grid-col h5 {
+    margin: 0.7rem auto;
+    color: #434343;
+}
+.grid-col span {
+    color: #004d63;
+}
+.grid-col a {
+    text-decoration: none;
+    text-align: center;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    background: #005f78;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.5s ease-in;
+}
+.grid-col a i {
+    font-size: 20.5px;
+}
+.grid-col a:hover {
+    background: transparent;
+    border: 1px solid #005f78;
+    color: #005f78;
+}

@@ -21,36 +21,6 @@ const Header = () => {
     return (
         <>
             <header ref={headerRef} className="header" data-aos="zoom-in">
-                {/*
-                <img
-                    src={ghs}
-                    alt="Ghs Julian Web Developer | Web Designer Ghs Julian | Programmer"
-                />
-                <h3 className="name" data-aos="zoom-in">
-                    Ghs Julian
-                </h3>
-                <h4 data-aos="zoom-in">Web Developer & Desginer</h4>
-                <div className="social-links" data-aos="zoom-in">
-                    <NavLink to="https://m.twitter.com/Ghsjulian" target="_blank" className="twitter">
-                        <i className="bx bxl-twitter"></i>
-                    </NavLink>
-                    <NavLink to="https://web.facebook.com/ghs.julian.85" target="_blank" className="facebook">
-                        <i className="bx bxl-facebook-circle"></i>
-                    </NavLink>
-                    <NavLink to="https://m.youtube.com/Ghsjulian" target="_blank" className="facebook">
-                        <i className="bx bxl-youtube"></i>
-                    </NavLink>
-                    <NavLink to="https://www.instagram.com/ghs.julian.85/" target="_blank" className="instagram">
-                        <i className="bx bxl-instagram-alt"></i>
-                    </NavLink>
-                    <NavLink  to="https://google.com/search?q=Ghs+Julian" target="_blank" className="google-plus">
-                        <i className="bx bxl-google"></i>
-                    </NavLink>
-                    <NavLink to="https://github.com/Ghsjulian" target="_blank" className="linkedin">
-                        <i className="bx bxl-github"></i>
-                    </NavLink>
-                </div>
-                */}
                 <div className="nav-menu" data-aos="zoom-in">
                     <ul>
                         <li>
@@ -103,7 +73,7 @@ const Header = () => {
                 </div>
             </header>
             <nav className="top-bar">
-                <h3>Ghs Julian</h3>
+                <h3>Shopping-Cart</h3>
                 <button onClick={openHeader}>
                     <i className={`bx bx-${isOpen ? "x" : "menu"}`}></i>
                 </button>

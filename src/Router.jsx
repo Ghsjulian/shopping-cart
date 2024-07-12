@@ -5,6 +5,7 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import NotFound from "./components/404";
+import LatestProducts from "./components/LatestProducts"
 
 const MyRoutes = [
     {
@@ -45,6 +46,14 @@ const MyRoutes = [
         element: (
             <Layouts>
                 <Projects isTrue={true} />
+            </Layouts>
+        )
+    },
+    {
+        path: "/latest-products",
+        element: (
+            <Layouts>
+                <LatestProducts />
             </Layouts>
         )
     },

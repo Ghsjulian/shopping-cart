@@ -4,7 +4,7 @@ import About from "../components/AboutSection";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Contact from "../components/Contact";
-
+import LatestProducts from "../components/LatestProducts"
 const Home = () => {
    // document.title = "Ghs Julian - Official Portfolio Web Developer ";
     useEffect(() => {
@@ -14,6 +14,7 @@ const Home = () => {
     return (
         <>
             <HeroSection />
+           <LatestProducts/>
            {/* <About isTrue={false} />
             <Skills isTrue={false} />
             <Projects isTrue={false} />

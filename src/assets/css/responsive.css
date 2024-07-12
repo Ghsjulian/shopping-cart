@@ -1,6 +1,7 @@
 /*
  ##### Responsive Desgin Here ####
 */
+
 @media (max-width: 768px) {
     header,
     .header {
@@ -17,7 +18,8 @@
         display: block;
         transition: 0.5s ease-in;
     }
-    .top-bar a , .top-bar .top-bar-links {
+    .top-bar a,
+    .top-bar .top-bar-links {
         display: none;
     }
     .top-bar button {
@@ -39,12 +41,17 @@
         left: 0;
         width: 100%;
     }
-    .container p,
-    #skills article,#projects article,#contact article {
+    .container p {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    #skills article,
+    #projects article,
+    #contact article {
         max-width: 100%;
         text-align: justify;
         margin: 0.5rem auto;
-        padding: .3rem .5rem;
+        padding: 0.3rem 0.5rem;
     }
     .footer {
         left: 0;
@@ -60,4 +67,14 @@
     .grid-row .col img {
         width: 320px;
     }
+.carousel-item img {
+  width: 100vw;
+  height: auto;  /* Allow image to adapt proportionally */
+  object-fit: cover;  /* Ensure image fills the container */
+  display: block;  /* Make sure image behaves like a block element */
+}
+.page p,#desc{
+    width: 100%;
+    max-width: 100%;
+}
 }

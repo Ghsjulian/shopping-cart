@@ -26,8 +26,8 @@ html {
     font-size: 95%;
     font-family: poppin-bold, "Sans-Serif";
     --bg: #ecffff;
-    --header: #002734;
-    --nav: #006a75;
+    --header: #005873;
+    --nav: #005075;
     --btn: #004ff7;
 }
 
@@ -70,12 +70,17 @@ header,
     top: 0;
     left: 0;
     z-index: 999900;
-    padding: 0.5rem 0.6rem;
+    padding: 0.5rem 0;
     background: var(--header);
     color: #ffff;
     width: 25%;
     height: 100vh;
     overflow-y: auto;
+    /*
+    background-image: url("images/pexels-jplenio-1103970.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    */
 }
 .header img {
     width: 200px;
@@ -105,7 +110,7 @@ header,
     color: #fff;
     font-weight: 500;
     font-size: 25px;
-    margin: 0.3rem auto;
+    margin: 0.3rem 0;
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -125,6 +130,8 @@ header,
     align-items: left;
     text-align: left;
     margin: 0.3rem 0;
+    padding: 0;
+    left: -2px;
 }
 .nav-menu ul li a {
     text-decoration: none;
@@ -134,7 +141,7 @@ header,
     text-align: left;
     font-size: 18px;
     color: #fff;
-    margin: 1rem 0.5rem;
+    margin: 1rem 0.3rem;
     padding: 0.5rem 0.7rem;
     border-radius: 5px;
 }
@@ -189,7 +196,7 @@ nav,
 }
 
 main {
-    padding-top: 4rem;
+    padding-top: 3.8rem;
     position: relative;
     left: 25%;
     width: calc(100% - 25%);
@@ -200,39 +207,84 @@ section,
     margin: 0 auto;
 }
 .hero {
-    background-image: url("../img/bg_5.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     display: flex;
+    align-items: center;
     text-align: center;
     justify-content: center;
+    background-image: url("images/pexels-jplenio-1103970.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
-.hero .container {
-    margin-top: 38%;
+.hero .container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0.3rem auto;
+}
+.container #hero--txt {
+    text-align: center;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.carousel a,
+.slide a {
+    background: transparent;
+    /*
+    display: none;*/
+}
+.carousel a:hover {
+    background: transparent;
+    outline: none;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/*
+.carousel-item img {
+    width: 100vw;
+    height: auto;  Allow image to adapt proportionally 
+    object-fit: cover;  Ensure image fills the container 
+    display: block; Make sure image behaves like a block element 
+}
+*/
+.carousel-caption {
+    margin-top: 0;
 }
 .container p {
     max-width: 50%;
     width: 100%;
-    margin: 0.3rem auto;
+    margin: 0 auto;
     text-align: center;
     color: #ffffff;
     font-weight: 500;
-    text-shadow: 1px 1px 2px #505050;
+    text-shadow: 1px 1px 2px #ffffff;
     font-size: 18px;
     line-height: 1.8rem;
     text-transform: capitalize;
     word-spacing: 2px;
 }
+.container h2 {
+    font-size: 2rem;
+}
 .container h3 {
-    font-size: 1.7rem;
-    color: #ffffff;
-    margin: 0.3rem auto;
+    font-size: 2rem;
+    color: #dd05ff;
+    margin: 0 auto;
     text-align: center;
-    text-shadow: 2px 1px 2px #00b1c6;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    text-shadow: 2px 1px 2px #dd05ff;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.2rem;
 }
 
 .container .typed-cursor {
@@ -242,7 +294,7 @@ section,
     font-size: 35px;
 }
 
-.container .btn-area {
+.btn-area {
     display: flex;
     justify-content: center;
     align-items: center;
