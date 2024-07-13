@@ -28,10 +28,14 @@ const Signup = () => {
             messageRef.current.textContent = text;
         }
         setTimeout(() => {
-            messageRef.current.classList.remove("success");
-            messageRef.current.classList.remove("error");
+            if (messageRef.current.classList.contains("success")) {
+                messageRef.current.classList.remove("success");
+            } else {
+                messageRef.current.classList.remove("error");
+            }
             messageRef.current.textContent = "";
         }, 3000);
+        console.clear();
     };
     const openOtPForm = () => {
         signupRef.current.style.display = "none";
@@ -61,7 +65,7 @@ const Signup = () => {
                     otpMessage.current.classList.add("success");
                     otpMessage.current.textContent = responseData.success;
                     setTimeout(() => {
-                        localStorage.removeItem("user")
+                        localStorage.removeItem("user");
                         navigate("/");
                     }, 2000);
                 } else {
@@ -84,6 +88,7 @@ const Signup = () => {
             otpMessage.current.classList.remove("error");
             otpMessage.current.textContent = "";
         }, 3000);
+        console.clear();
     };
     const handleChange = event => {
         setUsers({ ...users, [event.target.name]: event.target.value.trim() });

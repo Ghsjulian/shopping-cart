@@ -40,7 +40,7 @@ const Header = () => {
             if (responseData.type) {
                 flashMessage.current.textContent = responseData.success;
                 if (deleteCookie("e-comUser")) {
-                    navigate("/login");
+                    navigate("/");
                 }
             } else {
                 flashMessage.current.textContent = responseData.error;

@@ -49,6 +49,7 @@
 }
 .grid-col span {
     color: #004d63;
+    font-size: 16px;
 }
 .grid-col a {
     display: flex;

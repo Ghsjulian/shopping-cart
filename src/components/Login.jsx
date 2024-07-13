@@ -22,10 +22,14 @@ const Login = () => {
             messageRef.current.textContent = text;
         }
         setTimeout(() => {
-            messageRef.current.classList.remove("success");
-            messageRef.current.classList.remove("error");
+            if (messageRef.current.classList.contains("success")) {
+                messageRef.current.classList.remove("success");
+            } else {
+                messageRef.current.classList.remove("error");
+            }
             messageRef.current.textContent = "";
         }, 3000);
+        console.clear();
     };
     const handleChange = event => {
         setUsers({ ...users, [event.target.name]: event.target.value });
@@ -46,8 +50,8 @@ const Login = () => {
                 const info = JSON.stringify(responseData.data);
                 setCookie("e-comUser", info);
                 showMessage(responseData.type, responseData.success);
-                navigate("/")
-               /*
+                navigate("/");
+                /*
                // When We Will Admin Access This Code Will Be Executed 
                 if(responseData.userType === "Admin - Ghs Julian"){
                     navigate("/admin")
@@ -61,6 +65,7 @@ const Login = () => {
         } catch (error) {
             showMessage(false, "Server Error !");
         }
+        console.clear();
     };
     const submitUser = () => {
         if (!users.user_email && !users.user_password) {
