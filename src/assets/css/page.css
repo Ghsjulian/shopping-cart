@@ -118,6 +118,9 @@
     padding: 0.5rem;
     border-radius: 10px;
 }
+.signup-form h3 {
+    color: #525252;
+}
 .error {
     color: #c74100;
     border: 0.1px solid #c74100;

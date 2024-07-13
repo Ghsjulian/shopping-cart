@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
+import api from "../assets/js/cookies.js"
 
 const Login = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);
     const btnRef = useRef(null);
     const [users, setUsers] = useState({
-        
-        user_email: null,
-        user_password: null
+        user_email: "",
+        user_password: ""
     });
     const showMessage = (isTrue, text) => {
         if (isTrue) {
@@ -33,10 +34,9 @@ const Login = () => {
         setUsers({ ...users, [event.target.name]: event.target.value });
     };
     const sendToServer = async users => {
-        let url = "http://localhost:5000/api/signup";
         try {
             btnRef.current.textContent = "Please Wait...";
-            const response = await fetch(url, {
+            const response = await fetch(apiUrl + "/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -46,13 +46,13 @@ const Login = () => {
             const responseData = await response.json();
             btnRef.current.textContent = "Signup";
             if (responseData.type) {
+                api.setCookie("userInfo","Ghs Julian")
                 showMessage(responseData.type, responseData.success);
             } else {
                 showMessage(responseData.type, responseData.error);
             }
-            console.log(responseData);
         } catch (error) {
-            console.error("Error:", error);
+            showMessage(false, "Server Error !");
         }
     };
     const submitUser = () => {
@@ -90,7 +90,7 @@ const Login = () => {
                 />
                 <strong>
                     Don't Have An Account ?{" "}
-                    <NavLink to="/login">Signup</NavLink>
+                    <NavLink to="/signup">Signup</NavLink>
                 </strong>
                 <button ref={btnRef} className="submit" onClick={submitUser}>
                     Login
