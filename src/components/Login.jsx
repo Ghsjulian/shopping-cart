@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import api from "../assets/js/cookies.js"
+import { setCookie } from "../Cookies";
 
 const Login = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -22,9 +22,6 @@ const Login = () => {
             messageRef.current.textContent = text;
         }
         setTimeout(() => {
-            if (isTrue) {
-                navigate("/");
-            }
             messageRef.current.classList.remove("success");
             messageRef.current.classList.remove("error");
             messageRef.current.textContent = "";
@@ -44,10 +41,20 @@ const Login = () => {
                 body: JSON.stringify(users)
             });
             const responseData = await response.json();
-            btnRef.current.textContent = "Signup";
+            btnRef.current.textContent = "Login";
             if (responseData.type) {
-                api.setCookie("userInfo","Ghs Julian")
+                const info = JSON.stringify(responseData.data);
+                setCookie("e-comUser", info);
                 showMessage(responseData.type, responseData.success);
+                navigate("/")
+               /*
+               // When We Will Admin Access This Code Will Be Executed 
+                if(responseData.userType === "Admin - Ghs Julian"){
+                    navigate("/admin")
+                } else {
+                    navigate("/")
+                }
+                */
             } else {
                 showMessage(responseData.type, responseData.error);
             }
@@ -74,7 +81,7 @@ const Login = () => {
             <div className="signup-form">
                 <span ref={messageRef} id="message"></span>
                 <input
-                    type="email"
+                    type={true}
                     required="true"
                     name="user_email"
                     placeholder="Enter User Email"

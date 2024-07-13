@@ -41,7 +41,7 @@ const Signup = () => {
         let info = JSON.parse(localStorage.getItem("user"));
         const url = import.meta.env.VITE_API_URL;
         if (otp && otp.length > 5 && info.user_otp.toString() === otp) {
-            setOtp("")
+            setOtp("");
             try {
                 otpbtnRef.current.textContent = "Please Wait...";
                 const response = await fetch(url + "/user/verification", {
@@ -61,6 +61,7 @@ const Signup = () => {
                     otpMessage.current.classList.add("success");
                     otpMessage.current.textContent = responseData.success;
                     setTimeout(() => {
+                        localStorage.removeItem("user")
                         navigate("/");
                     }, 2000);
                 } else {
@@ -113,7 +114,6 @@ const Signup = () => {
         }
     };
     const submitUser = () => {
-        openOtPForm();
         if (!users.user_name && !users.user_email && !users.user_password) {
             showMessage(false, "All Fields Are Required !");
         } else if (!users.user_name) {
@@ -142,6 +142,7 @@ const Signup = () => {
                 />
                 <input
                     type="email"
+                    required={true}
                     name="user_email"
                     placeholder="Enter User Email"
                     onChange={handleChange}

@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 export const setCookie = async (cookieName, cookieValue) => {
     const expirationDate = new Date();
     expirationDate.setTime(
@@ -6,12 +6,12 @@ export const setCookie = async (cookieName, cookieValue) => {
     ); // 2 months in milliseconds
     document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/`;
 };
-export const deleteCookie = async cookieName => {
+export const deleteCookie = cookieName => {
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() - 1);
     document.cookie = `${cookieName}=; expires=${expirationDate.toUTCString()}; path=/`;
 };
-export const getCookie = async cname => {
+export const getCookie = cname => {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(";");
@@ -25,4 +25,17 @@ export const getCookie = async cname => {
         }
     }
     return "";
+};
+
+export const getInfo = () => {
+    const data = getCookie("e-comUser") ? getCookie("e-comUser") : null;
+    const cookies = JSON.parse(data);
+    if (cookies) {
+        return cookies;
+    } else {
+        return {
+            token :false,
+            userId :false
+        };
+    }
 };

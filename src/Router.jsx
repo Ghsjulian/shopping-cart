@@ -1,4 +1,5 @@
 import Layouts from "./layouts/Layouts";
+import Protect from "./Protection/Protect";
 import Home from "./pages/Home";
 import About from "./components/AboutSection";
 import Projects from "./components/Projects";
@@ -29,17 +30,21 @@ const MyRoutes = [
     {
         path: "/signup",
         element: (
-            <Layouts>
-                <Signup />
-            </Layouts>
+           <Protect>
+                <Layouts>
+                    <Signup />
+                </Layouts>
+            </Protect>
         )
     },
     {
         path: "/login",
         element: (
-            <Layouts>
-                <Login />
-            </Layouts>
+            <Protect>
+                <Layouts>
+                    <Login />
+                </Layouts>
+            </Protect>
         )
     },
     {
