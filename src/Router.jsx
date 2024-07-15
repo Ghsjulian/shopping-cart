@@ -11,8 +11,10 @@ import NotFound from "./components/404";
 import LatestProducts from "./components/LatestProducts";
 import Profile from "./components/Profile";
 import ViewProduct from "./components/ViewProduct";
-import Cart from "./components/Cart"
-
+import Cart from "./components/Cart";
+/* Admin Components Here */
+import Dashboard from "./admin/Dashboard";
+/* Admin Components Here */
 
 const MyRoutes = [
     {
@@ -76,6 +78,16 @@ const MyRoutes = [
             <PrivatePath>
                 <Layouts>
                     <Profile />
+                </Layouts>
+            </PrivatePath>
+        )
+    },
+    {
+        path: "/admin/dashboard",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <Dashboard />
                 </Layouts>
             </PrivatePath>
         )
