@@ -433,7 +433,7 @@ input:focus {
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition: .3s ease-in;
+    transition: 0.3s ease-in;
 }
 .fetch img {
     width: 30px;
@@ -446,7 +446,28 @@ input:focus {
     font-weight: 500;
     margin: 0.2rem auto;
 }
-
+/* Admin Add Product Styling */
+#add-product img {
+    width: 200px;
+    height: 160px;
+    object-fit: contain;
+    margin: 0.3rem auto;
+    border-radius: 5px;
+}
+#add-product label {
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    margin: 0.3rem auto;
+    background: #005b74;
+    color: #fff;
+}
+#add-product textarea {
+    outline: none;
+    border: 1.5px solid #007fbd;
+    border-radius: 8px;
+    height: 70px;
+    padding: .5rem;
+}
 @media (max-width: 768px) {
     .product-flex {
         width: 100%;

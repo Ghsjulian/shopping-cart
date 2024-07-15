@@ -14,6 +14,7 @@ import ViewProduct from "./components/ViewProduct";
 import Cart from "./components/Cart";
 /* Admin Components Here */
 import Dashboard from "./admin/Dashboard";
+import AddProduct from "./admin/AddProduct";
 /* Admin Components Here */
 
 const MyRoutes = [
@@ -90,6 +91,14 @@ const MyRoutes = [
                     <Dashboard />
                 </Layouts>
             </PrivatePath>
+        )
+    },
+    {
+        path: "/admin/add-product",
+        element: (
+                <Layouts>
+                    <AddProduct />
+                </Layouts>
         )
     },
     {
