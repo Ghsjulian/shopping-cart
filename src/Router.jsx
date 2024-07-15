@@ -1,5 +1,6 @@
 import Layouts from "./layouts/Layouts";
 import Protect from "./Protection/Protect";
+import PrivatePath from "./Protection/PrivatePath";
 import Home from "./pages/Home";
 import About from "./components/AboutSection";
 import Projects from "./components/Projects";
@@ -8,6 +9,10 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import NotFound from "./components/404";
 import LatestProducts from "./components/LatestProducts";
+import Profile from "./components/Profile";
+import ViewProduct from "./components/ViewProduct";
+import Cart from "./components/Cart"
+
 
 const MyRoutes = [
     {
@@ -30,7 +35,7 @@ const MyRoutes = [
     {
         path: "/signup",
         element: (
-           <Protect>
+            <Protect>
                 <Layouts>
                     <Signup />
                 </Layouts>
@@ -48,19 +53,31 @@ const MyRoutes = [
         )
     },
     {
-        path: "/skills",
+        path: "/view-product/:product-id",
         element: (
             <Layouts>
-                <Skills isTrue={true} />
+                <ViewProduct />
             </Layouts>
         )
     },
     {
-        path: "/projects",
+        path: "/cart",
         element: (
-            <Layouts>
-                <Projects isTrue={true} />
-            </Layouts>
+            <PrivatePath>
+                <Layouts>
+                    <Cart />
+                </Layouts>
+            </PrivatePath>
+        )
+    },
+    {
+        path: "/profile",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <Profile />
+                </Layouts>
+            </PrivatePath>
         )
     },
     {

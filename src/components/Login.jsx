@@ -86,8 +86,8 @@ const Login = () => {
             <div className="signup-form">
                 <span ref={messageRef} id="message"></span>
                 <input
-                    type={true}
-                    required="true"
+                    type="email"
+                    required={true}
                     name="user_email"
                     placeholder="Enter User Email"
                     onChange={handleChange}

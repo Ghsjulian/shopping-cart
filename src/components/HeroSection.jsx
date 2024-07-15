@@ -6,7 +6,7 @@ import Slider from "../slider/HeroSlide";
 
 const HeroSection = () => {
     return (
-        <section className="hero section">
+        <section data-aos="zoom-in" className="hero section">
            
                 <Slider />
                 {/*<h2>E Commerce Shopping Store</h2>

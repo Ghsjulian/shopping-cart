@@ -38,10 +38,12 @@ const Header = () => {
             });
             const responseData = await response.json();
             if (responseData.type) {
-                flashMessage.current.textContent = responseData.success;
-                if (deleteCookie("e-comUser")) {
-                    navigate("/");
-                }
+                deleteCookie("e-comUser");
+                // flashMessage.current.textContent = responseData.success;
+                //window.location.reload()
+                setTimeout(()=>{
+                navigate("/login");
+                },2500)
             } else {
                 flashMessage.current.textContent = responseData.error;
             }

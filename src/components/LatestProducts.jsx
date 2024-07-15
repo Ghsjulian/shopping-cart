@@ -1,8 +1,10 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 import tshirt_1 from "../assets/products/tshirt_1.png";
 import tshirt_2 from "../assets/products/tshirt_2.png";
 import tshirt_3 from "../assets/products/tshirt_3.png";
 import tshirt_4 from "../assets/products/tshirt_4.png";
+
 
 const LatestProducts = () => {
     return (
@@ -19,14 +21,14 @@ const LatestProducts = () => {
                     <span>Price : 80$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                     <div className="btn-area">
-                        <a href="#">
+                        <NavLink to="/view-product/12">
                             <i className="bx bx-show"></i>
                             <span>View Product</span>
-                        </a>
-                        <a href="#">
+                        </NavLink>
+                        <NavLink to="/view-product/12">
                             <i className="bx bxs-cart-add"></i>{" "}
                             <span>Add Cart</span>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
                 <div className="grid-col">
@@ -34,14 +36,14 @@ const LatestProducts = () => {
                     <span>Price : 180$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                     <div className="btn-area">
-                        <a href="#">
+                        <NavLink to="/view-product/12">
                             <i className="bx bx-show"></i>
                             <span>View Product</span>
-                        </a>
-                        <a href="#">
+                        </NavLink>
+                        <NavLink to="/view-product/12">
                             <i className="bx bxs-cart-add"></i>{" "}
                             <span>Add Cart</span>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
                 <div className="grid-col">
@@ -49,14 +51,14 @@ const LatestProducts = () => {
                     <span>Price : 79$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                      <div className="btn-area">
-                        <a href="#">
+                        <NavLink to="/view-product/12">
                             <i className="bx bx-show"></i>
                             <span>View Product</span>
-                        </a>
-                        <a href="#">
+                        </NavLink>
+                        <NavLink to="/view-product/12">
                             <i className="bx bxs-cart-add"></i>{" "}
                             <span>Add Cart</span>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
                 <div className="grid-col">
@@ -64,14 +66,14 @@ const LatestProducts = () => {
                     <span>Price : 120$</span>
                     <h5>Full Sleeve T-Shirt </h5>
                      <div className="btn-area">
-                        <a href="#">
+                        <NavLink to="/view-product/12">
                             <i className="bx bx-show"></i>
                             <span>View Product</span>
-                        </a>
-                        <a href="#">
+                        </NavLink>
+                        <NavLink to="/view-product/12">
                             <i className="bx bxs-cart-add"></i>{" "}
                             <span>Add Cart</span>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@
     text-decoration: none;
     text-align: center;
     margin: 0.5rem auto;
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 0.6rem;
     border-radius: 10px;
     background: #005f78;
     color: #fff;
@@ -132,7 +132,7 @@
 .success {
     color: #00cd0a;
     border: 0.1px solid #00cd0a;
-    background: rgba(32,134,0,0.21);
+    background: rgba(32, 134, 0, 0.21);
     font-weight: 500;
     text-transform: capitalize;
 }
@@ -151,7 +151,7 @@ input:focus {
 .signup-form strong {
     color: #5c5c5c;
     font-weight: 500;
-    margin: .3rem auto;
+    margin: 0.3rem auto;
 }
 .signup-form strong a {
     text-decoration: none;
@@ -170,4 +170,258 @@ input:focus {
 }
 .submit:hover {
     background: #008ff1;
+}
+/* Profile Components Section*/
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem auto;
+}
+.profile #edit {
+    position: absolute;
+    right: 5px;
+    top: -2.8rem;
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 0.6rem;
+    border-radius: 50%;
+    font-size: 28px;
+}
+.profile #user-img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 2px;
+    margin: 0.3rem auto;
+    border: 1px solid #00a2a4;
+}
+.profile h3 {
+    font-size: 16px;
+    color: #616161;
+}
+.profile .btn-area {
+    display: flex;
+    gap: 1rem;
+}
+.btn-area h4 {
+    font-size: 18px;
+    border-bottom: 2px solid #656565;
+    color: #007b87;
+}
+.btn-area h4 span {
+    color: #ba0f00;
+    margin: 0 0.3rem;
+}
+
+/*   View  Products Styling  */
+#view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#view #product-img {
+    width: 65%;
+    height: auto;
+    object-fit: contain;
+    margin: 0.5rem auto;
+}
+#view h4 {
+    color: #474747;
+}
+#view h4 span {
+    color: #008ebd;
+}
+.product-flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.product-flex .flex-col {
+    align-items: left;
+    text-align: left;
+}
+.flex-col li {
+    color: #3b3b3b;
+    display: flex;
+    margin: 0.7rem 0;
+}
+.flex-col li i {
+    margin: 0 0.2rem;
+    color: #14bb00;
+    font-size: 20px;
+}
+.flex-col .flex-btn {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem auto;
+    align-items: center;
+}
+.flex-btn a {
+    text-decoration: none;
+    outline: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease-in;
+    margin: 0.5rem 0.7rem;
+}
+.flex-btn a i {
+    font-size: 16px;
+}
+.flex-btn #cart {
+    background: #008cba;
+    border: 1px solid #008cba;
+    color: #fff;
+}
+.flex-btn #cart:hover {
+    background: transparent;
+    border: 1px solid #008cba;
+    color: #008cba;
+}
+.flex-btn #call {
+    background: #d76200;
+    border: 1px solid #d76200;
+    color: #fff;
+}
+.flex-btn #call:hover {
+    background: transparent;
+    border: 1px solid #d76200;
+    color: #d76200;
+}
+.flex-btn #fav {
+    background: #00b120;
+    border: 1px solid #00b120;
+    color: #fff;
+}
+.flex-btn #fav:hover {
+    background: transparent;
+    border: 1px solid #00b120;
+    color: #00b120;
+}
+
+/* Cart Page Styling */
+.cart {
+    width: 100%;
+    max-width: 550px;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #00778d;
+}
+.cart-col {
+    margin: 0.5rem 0;
+    text-align: left;
+    align-items: left;
+}
+.cart #cart-col {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin: 0;
+}
+#cart-col h6,
+.cart-col h6 {
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+#cart-col img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+#cart-col .price-col {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin: 0 0;
+}
+#cart-col .price-col span {
+    margin: 0.1rem 0;
+    color: #002b33;
+}
+.cart #cart-btn {
+    margin: 0.2rem 0;
+    display: flex;
+    align-items: left;
+    text-align: left;
+    justify-content: left;
+}
+#cart-btn button {
+    outline: none;
+    background: #003d49;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    padding: 0.5rem 0.3rem;
+    margin-right: 0.7rem;
+    width: 35px;
+    height: 25px;
+}
+.cart-col #action-btn {
+    margin: 0.6rem 0;
+    display: flex;
+    align-items: left;
+    text-align: left;
+    justify-content: left;
+}
+#action-btn button {
+    outline: none;
+    background: #003d49;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    padding: 0.5rem 0.3rem;
+    margin-right: 0.7rem;
+    width: 35px;
+    height: 25px;
+}
+@media (max-width: 768px) {
+    .product-flex {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0.3rem 0;
+        padding: 0;
+        align-items: left;
+        text-align: left;
+    }
+    .product-flex .flex-col {
+        text-align: left;
+        margin-left: -7.3rem;
+    }
+    .flex-col .flex-btn {
+        margin-left: 7.1rem;
+    }
+    .flex-btn a {
+        font-size: 14px;
+        padding: 0.5rem 0.5rem;
+        margin: 0.5rem 0.3rem;
+    }
+
+    .cart {
+        width: 99%;
+        margin: 0.5rem 0.2rem;
+    }
 }

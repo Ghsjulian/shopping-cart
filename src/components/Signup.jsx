@@ -91,7 +91,7 @@ const Signup = () => {
         console.clear();
     };
     const handleChange = event => {
-        setUsers({ ...users, [event.target.name]: event.target.value.trim() });
+        setUsers({ ...users, [event.target.name]: event.target.value });
     };
     const sendToServer = async users => {
         const url = import.meta.env.VITE_API_URL;
