@@ -14,6 +14,6 @@ const Protect = ({ children }) => {
             navigate("/");
         }
     }, [cookies]);
-    return 
+    return children;
 };
 export default Protect;
