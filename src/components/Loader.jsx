@@ -4,7 +4,7 @@ const Loader = ({text}) => {
     return (
         <div className="fetch">
             <img src="/icons/loading2.gif" />
-            <h3>{text.msg}</h3>
+            <h3>{text}</h3>
         </div>
     );
 };

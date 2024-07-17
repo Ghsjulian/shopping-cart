@@ -15,6 +15,8 @@ import Cart from "./components/Cart";
 /* Admin Components Here */
 import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
+import AllProducts from "./admin/AllProducts";
+import EditProduct from "./admin/EditProduct";
 /* Admin Components Here */
 
 const MyRoutes = [
@@ -83,6 +85,7 @@ const MyRoutes = [
             </PrivatePath>
         )
     },
+    /* Admin Routes Here */
     {
         path: "/admin/dashboard",
         element: (
@@ -96,11 +99,34 @@ const MyRoutes = [
     {
         path: "/admin/add-product",
         element: (
+            <PrivatePath>
                 <Layouts>
                     <AddProduct />
                 </Layouts>
+                </PrivatePath>
         )
     },
+    {
+        path: "/admin/products",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <AllProducts />
+                </Layouts>
+                </PrivatePath>
+        )
+    },
+    {
+        path: "/admin/edit-product/:id",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <EditProduct />
+                </Layouts>
+                </PrivatePath>
+        )
+    },
+    /* Admin Routes Here */ 
     {
         path: "/latest-products",
         element: (

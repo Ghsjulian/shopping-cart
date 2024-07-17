@@ -466,7 +466,7 @@ input:focus {
     border: 1.5px solid #007fbd;
     border-radius: 8px;
     height: 70px;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 @media (max-width: 768px) {
     .product-flex {
@@ -495,4 +495,22 @@ input:focus {
         width: 99%;
         margin: 0.5rem 0.2rem;
     }
+}
+
+/*  OTP VERIFICATION FORM  */
+#otp-verify {
+    position: relative;
+}
+#otp-verify h3 {
+    margin-top: 1.5rem;
+}
+#otp-verify #skip {
+    position: absolute;
+    right: 0.1rem;
+    top: 0.1rem;
+    background: #003040;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.3rem 0.7rem;
 }

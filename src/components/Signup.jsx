@@ -169,10 +169,12 @@ const Signup = () => {
                 </button>
             </div>
             <div
+                id="otp-verify"
                 style={{ display: "none" }}
                 className="signup-form"
                 ref={otpRef}
             >
+                <span id="skip">Skip Now</span>
                 <h3> Please Check Your Email</h3>
                 <span ref={otpMessage} id="message"></span>
                 <input

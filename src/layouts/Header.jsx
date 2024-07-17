@@ -41,9 +41,9 @@ const Header = () => {
                 deleteCookie("e-comUser");
                 // flashMessage.current.textContent = responseData.success;
                 //window.location.reload()
-                setTimeout(()=>{
-                navigate("/login");
-                },2500)
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2500);
             } else {
                 flashMessage.current.textContent = responseData.error;
             }
@@ -67,6 +67,33 @@ const Header = () => {
                                 <i className="bx bx-home"></i>Home
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/admin/add-product"
+                                className={
+                                    path == "/admin/add-product" ? "active" : ""
+                                }
+                            >
+                                <i className="bx bx-user-circle"></i>
+                                Add Product
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/admin/products"
+                                className={
+                                    path == "/admin/products"
+                                        ? "active"
+                                        : ""
+                                }
+                            >
+                                <i className="bx bx-user-circle"></i>
+                                All Products
+                            </NavLink>
+                        </li>
+
                         {getInfo().token && (
                             <>
                                 <li>

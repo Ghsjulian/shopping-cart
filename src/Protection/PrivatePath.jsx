@@ -7,11 +7,10 @@ const PrivatePath = ({ children }) => {
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
-        const isLoggedIn = cookies.token;
         if (!cookies.token && !cookies.userId) {
-            navigate("/");
+            navigate("/login");
         }
     }, [cookies]);
-    return cookies.token && children;
+    return cookies.token && cookies.userId === "669654273140bd66be3b9726" && children;
 };
 export default PrivatePath;

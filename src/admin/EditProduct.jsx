@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import ghs from "../assets/products/tshirt_1.png";
 
-const AddProduct = () => {
+const EditProduct = () => {
+    const param = useParams();
+    const [editProduct, setEditProduct] = useState(null);
+    const [isProducts, setIsProducts] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);
@@ -62,7 +66,7 @@ const AddProduct = () => {
                 if (response.data.type) {
                     messageRef.current.classList.add("success");
                     messageRef.current.textContent = response.data.success;
-                    navigate("/admin/products")
+                    navigate("/admin/products");
                 } else {
                     messageRef.current.classList.add("error");
                     messageRef.current.textContent = response.data.error;
@@ -75,12 +79,31 @@ const AddProduct = () => {
             messageRef.current.classList.add("error");
             messageRef.current.textContent = "All Fields Are Required";
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             messageRef.current.classList.remove("error");
             messageRef.current.textContent = "";
-        },3000)
+        }, 3000);
+    };
+    const fetchProduct = async () => {
+        try {
+            setIsLoading(true);
+            const response = await axios.get(
+                `${apiUrl}/admin/eidt-product/${param.id}`
+            );
+            if (response.data.products) {
+                console.log(response.data);
+                setEditProduct(response.data.products);
+                setIsLoading(false);
+            } else {
+                setIsProducts(false);
+                console.log("No Products Found");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
     useEffect(() => {
+        fetchProduct();
         let fileReader,
             isCancel = false;
         if (file) {
@@ -100,10 +123,11 @@ const AddProduct = () => {
             }
         };
     }, [file]);
-
+        const api = apiUrl + "/admin/eidt-product/" + param.id;
+        
     return (
         <section data-aos="zoom-in" id="view" className="page one-page">
-            <h2>Add Products</h2>
+            <h2>{api}</h2>
             <div id="add-product" className="signup-form">
                 {fileData && <img src={fileData} alt="File For Uploading" />}
                 <label htmlFor="product_img">Upload Product Image</label>
@@ -142,4 +166,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default EditProduct;
