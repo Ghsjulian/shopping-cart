@@ -17,8 +17,6 @@ const FetchProducts = ({ category }) => {
                 apiUrl + "/products/category-product/" + category
             );
             if (response.data.products) {
-                console.log(response.data);
-                //                 alert(re.data.code);
                 setProducts(response.data.products);
                 setIsLoading(false);
             } else {
