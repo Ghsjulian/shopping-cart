@@ -45,6 +45,10 @@ const EditProduct = () => {
         const formData = new FormData();
         formData.append("product_img", file);
         formData.append("data", JSON.stringify(products));
+
+        console.log(products);
+
+        /*
         if (
             file &&
             products.product_title &&
@@ -79,6 +83,7 @@ const EditProduct = () => {
             messageRef.current.classList.add("error");
             messageRef.current.textContent = "All Fields Are Required";
         }
+        */
         setTimeout(() => {
             messageRef.current.classList.remove("error");
             messageRef.current.textContent = "";
@@ -88,7 +93,7 @@ const EditProduct = () => {
         try {
             setIsLoading(true);
             const response = await axios.get(
-                `${apiUrl}/admin/eidt-product/${param.id}`
+                `${apiUrl}/admin/edit-product/${param.id}`
             );
             if (response.data.products) {
                 console.log(response.data);
@@ -102,8 +107,18 @@ const EditProduct = () => {
             console.log(error);
         }
     };
+
     useEffect(() => {
         fetchProduct();
+        if (isLoading) {
+            return;
+        }
+        if (editProduct) {
+            setFileDataURL(editProduct.product_img);
+        }
+    }, []);
+
+    useEffect(() => {
         let fileReader,
             isCancel = false;
         if (file) {
@@ -123,45 +138,56 @@ const EditProduct = () => {
             }
         };
     }, [file]);
-        const api = apiUrl + "/admin/eidt-product/" + param.id;
-        
+
     return (
         <section data-aos="zoom-in" id="view" className="page one-page">
-            <h2>{api}</h2>
-            <div id="add-product" className="signup-form">
-                {fileData && <img src={fileData} alt="File For Uploading" />}
-                <label htmlFor="product_img">Upload Product Image</label>
-                <span ref={messageRef} id="message"></span>
-                <input
-                    type="file"
-                    id="product_img"
-                    hidden={true}
-                    onChange={handleFileChange}
-                />
-                <input
-                    name="product_title"
-                    type="text"
-                    placeholder="Enter Product Title"
-                    onChange={handleChange}
-                    value={products.product_title}
-                />
-                <input
-                    name="product_category"
-                    type="text"
-                    placeholder="Enter Product Category"
-                    onChange={handleChange}
-                    value={products.product_category}
-                />
-                <textarea
-                    name="product_desc"
-                    placeholder="Enter Products Descriptions"
-                    onChange={handleChange}
-                    value={products.product_desc}
-                ></textarea>
-                <button ref={btnRef} onClick={AddProduct} className="submit">
-                    Add Product
-                </button>
-            </div>
+            {editProduct && (
+                <>
+                    <h2>Edit Product</h2>
+                    <div id="add-product" className="signup-form">
+                        {fileData &&
+                                <img src={fileData} alt="File For Uploading" />
+                            }
+                        <label htmlFor="product_img">
+                            Upload Product Image
+                        </label>
+                        <span ref={messageRef} id="message"></span>
+                        <input
+                            type="file"
+                            id="product_img"
+                            hidden={true}
+                            onChange={handleFileChange}
+                        />
+                        <input
+                            name="product_title"
+                            type="text"
+                            placeholder="Enter Product Title"
+                            onChange={handleChange}
+                            value={products.product_title}
+                        />
+                        <input
+                            name="product_category"
+                            type="text"
+                            placeholder="Enter Product Category"
+                            onChange={handleChange}
+                            value={products.product_category}
+                        />
+                        <textarea
+                            name="product_desc"
+                            placeholder="Enter Products Descriptions"
+                            onChange={handleChange}
+                            value={products.product_desc}
+                        ></textarea>
+                        <button
+                            ref={btnRef}
+                            onClick={AddProduct}
+                            className="submit"
+                        >
+                            Add Product
+                        </button>
+                    </div>
+                </>
+            )}
         </section>
     );
 };
