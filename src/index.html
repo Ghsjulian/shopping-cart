@@ -1,10 +1,14 @@
 <body>
     <h2 id="name" class="name">Ghs Julian</h2>
     <script>
-        const str = "YES";
-        let st = str === "YES" ? true : false;
-        console.log(st);
-         window.location.href = "http://localhost:5173/latest-products";
+        const str = {
+            name: "Ghs Julian",
+            dev: "Web Developer"
+        };
+for (let key in str){
+    console.log(key);
+}
+        window.location.href = "http://localhost:5173/latest-products";
         /*  window.location.href =
                      "http://localhost:5000/api/admin/edit-product/6697415a38d7ebef85f028b3";
                      **/

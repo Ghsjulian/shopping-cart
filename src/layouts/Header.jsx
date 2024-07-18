@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import ghs from "../assets/img/ghs_10.png";
-import { getInfo, deleteCookie } from "../Cookies";
+import { getInfo, isAdmin, deleteCookie } from "../Cookies";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -67,32 +67,39 @@ const Header = () => {
                                 <i className="bx bx-home"></i>Home
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                onClick={closeHeader}
-                                to="/admin/add-product"
-                                className={
-                                    path == "/admin/add-product" ? "active" : ""
-                                }
-                            >
-                                <i className="bx bx-user-circle"></i>
-                                Add Product
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                onClick={closeHeader}
-                                to="/admin/products"
-                                className={
-                                    path == "/admin/products"
-                                        ? "active"
-                                        : ""
-                                }
-                            >
-                                <i className="bx bx-user-circle"></i>
-                                All Products
-                            </NavLink>
-                        </li>
+
+                        {isAdmin && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/admin/add-product"
+                                        className={
+                                            path == "/admin/add-product"
+                                                ? "active"
+                                                : ""
+                                        }
+                                    >
+                                        <i className="bx bx-user-circle"></i>
+                                        Add Product
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/admin/products"
+                                        className={
+                                            path == "/admin/products"
+                                                ? "active"
+                                                : ""
+                                        }
+                                    >
+                                        <i className="bx bx-user-circle"></i>
+                                        All Products
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
 
                         {getInfo().token && (
                             <>

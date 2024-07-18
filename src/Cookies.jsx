@@ -1,4 +1,6 @@
 import React from "react";
+const adminID = import.meta.env.VITE_ADMIN_ID;
+
 export const setCookie = async (cookieName, cookieValue) => {
     const expirationDate = new Date();
     expirationDate.setTime(
@@ -34,8 +36,17 @@ export const getInfo = () => {
         return cookies;
     } else {
         return {
-            token :false,
-            userId :false
+            token: false,
+            userId: false
         };
     }
-};
+}
+    export const isAdmin = () => {
+       const info = getInfo()
+        if (info.userId === adminID) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+

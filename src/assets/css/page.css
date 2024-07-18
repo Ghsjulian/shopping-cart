@@ -518,3 +518,23 @@ input:focus {
     border-radius: 8px;
     padding: 0.3rem 0.7rem;
 }
+.btn-flex {
+    display: flex;
+    align-items: center;
+    margin: 0.3rem auto;
+    padding: 0.3rem 3.6rem;
+}
+.btn-flex button {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #003040;
+    color: #ffff;
+    font-weight: 900;
+    padding: 0.5rem 1rem;
+}
+.btn-flex span {
+    color: #4f4f4f;
+    font-weight: 700;
+    font-size: 15px;
+}

@@ -54,8 +54,8 @@ const AddProduct = () => {
                     formData,
                     {
                         headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
+                    "Content-Type": "application/json"
+                },
                     }
                 );
                 btnRef.current.textContent = "Add Product";
