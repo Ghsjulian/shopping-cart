@@ -58,7 +58,7 @@ const MyRoutes = [
         )
     },
     {
-        path: "/view-product/:product-id",
+        path: "/view-product/:id",
         element: (
             <Layouts>
                 <ViewProduct />

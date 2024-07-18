@@ -1,5 +1,6 @@
 import React from "react";
 import FetchProducts from "./FetchProducts";
+import AllProducts from "./AllProducts"
 
 const LatestProducts = () => {
     return (
@@ -11,7 +12,7 @@ const LatestProducts = () => {
                     products are available in the stock, for more details or buy
                     one please order or cart now.
                 </p>
-                <FetchProducts category="t-shirt" />
+                <AllProducts />
             </section>
         </>
     );

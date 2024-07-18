@@ -90,6 +90,9 @@
     .grid-area .grid-col img {
         height: 150px;
     }
+    .grid-area .grid-col h5 {
+        font-size: 14px;
+    }
     .grid-area .grid-col .btn-area a span {
         /* width: 45%; */
         display: none;

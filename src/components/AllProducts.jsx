@@ -3,15 +3,13 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 
-const FetchProducts = ({ category }) => {
+const AllProducts = () => {
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URL;
     const [products, setProducts] = useState(null);
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-
-
-   const AddToCart = (id) =>{
+const AddToCart = (id) =>{
        alert(id)
    }
 
@@ -19,9 +17,7 @@ const FetchProducts = ({ category }) => {
     const fetchProduct = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(
-                apiUrl + "/products/category-product/" + category
-            );
+            const response = await axios.get(apiUrl + "/products/all-products");
             if (response.data.products) {
                 setProducts(response.data.products);
                 setIsLoading(false);
@@ -39,7 +35,7 @@ const FetchProducts = ({ category }) => {
         if (isLoading) {
             return;
         }
-    }, [category]);
+    }, []);
     return (
         <>
             <div className="grid-area">
@@ -57,11 +53,18 @@ const FetchProducts = ({ category }) => {
                                 <span>{product.product_desc.price}</span>
                                 <h5>{product.product_title}</h5>
                                 <div className="btn-area">
-                                    <NavLink to={`/view-product/${product._id}`}>
+                                    <NavLink
+                                        to={`/view-product/${product._id}`}
+                                    >
                                         <i className="bx bx-show"></i>
                                         <span>View Product</span>
                                     </NavLink>
-                                    <NavLink onClick={()=>{AddToCart(product._id)}}  to="#">
+                                    <NavLink
+                                        onClick={() => {
+                                            AddToCart(product._id);
+                                        }}
+                                        to="#"
+                                    >
                                         <i className="bx bxs-cart-add"></i>
                                         <span>Add Cart</span>
                                     </NavLink>
@@ -74,4 +77,4 @@ const FetchProducts = ({ category }) => {
     );
 };
 
-export default FetchProducts;
+export default AllProducts;
