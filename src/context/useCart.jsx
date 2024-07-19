@@ -10,24 +10,26 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import { cartReducer } from "../reducer/cartReducer";
 import { getInfo } from "../Cookies";
-
+import { getCart } from "../context/getCart.js";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const CartContext = createContext();
+
 const initialstate = {
-    cart: []
+    cart: getCart() ? getCart() :[]
 };
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialstate);
-    const addToCart = async (products,quantity) => {
+
+    const addToCart = async (products, quantity) => {
         const data = {
-            user : getInfo(),
-            product_id : products._id,
-            product_img :products.product_img,
-            product_title : products.product_title,
-            price : products.product_desc.price,
+            user: getInfo(),
+            product_id: products._id,
+            product_img: products.product_img,
+            product_title: products.product_title,
+            price: products.product_desc.price,
             quantity
-        }
+        };
         const response = await fetch(apiUrl + "/products/add-cart", {
             method: "POST",
             headers: {
@@ -36,13 +38,13 @@ const CartProvider = ({ children }) => {
             body: JSON.stringify(data)
         });
         const responseData = await response.json();
-
-        console.log(responseData);
-        alert(responseData.ok);
+        if (responseData.code == 200) {
+            alert("Cart Added!");
+        } else {
+            alert("This Product Already In Your Cart List");
+        }
     };
-    useEffect(() => {
-        localStorage.setItem("cartList", JSON.stringify(state.cart));
-    }, [state.cart]);
+    useEffect(() => {}, [state.cart]);
     return (
         <CartContext.Provider value={{ ...state, dispatch, addToCart }}>
             {children}

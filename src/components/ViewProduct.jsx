@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
+import { getInfo } from "../Cookies";
 import product from "../assets/products/tshirt_1.png";
 import FetchProducts from "./FetchProducts";
 import { useCart } from "../context/useCart";
@@ -39,6 +40,7 @@ const ViewProduct = () => {
         if (isLoading) {
             return;
         }
+        console.log(cart);
     }, [id]);
     return (
         <>
@@ -96,9 +98,9 @@ const ViewProduct = () => {
                                     <button
                                         onClick={() => {
                                             if (quantity == 1) {
-                                                return 
+                                                return;
                                             } else {
-                                                setQuantitiy(quantity-1)
+                                                setQuantitiy(quantity - 1);
                                             }
                                         }}
                                     >

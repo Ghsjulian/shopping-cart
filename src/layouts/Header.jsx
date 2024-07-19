@@ -67,9 +67,32 @@ const Header = () => {
                                 <i className="bx bx-home"></i>Home
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/latest-products"
+                                className={
+                                    path == "/latest-products" ? "active" : ""
+                                }
+                            >
+                                <i className="bx bxs-shopping-bags"></i>Latest Products 
+                            </NavLink>
+                        </li>
 
-                        {isAdmin && (
+                        {isAdmin && getInfo().token && (
                             <>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/profile"
+                                        className={
+                                            path == "/profile" ? "active" : ""
+                                        }
+                                    >
+                                        <i className="bx bx-user-circle"></i>
+                                        Profile
+                                    </NavLink>
+                                </li>
                                 <li>
                                     <NavLink
                                         onClick={closeHeader}
@@ -101,7 +124,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {getInfo().token && (
+                        {getInfo().token && !isAdmin && (
                             <>
                                 <li>
                                     <NavLink
@@ -197,25 +220,34 @@ const Header = () => {
                             </>
                         )}
                         {/* If User Not Login */}
-
-                        <li>
-                            <NavLink
-                                onClick={closeHeader}
-                                to="/about"
-                                className={path == "/about" ? "active" : ""}
-                            >
-                                <i className="bx bx-info-circle"></i> About
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                onClick={closeHeader}
-                                to="/contact"
-                                className={path == "/contact" ? "active" : ""}
-                            >
-                                <i className="bx  bxl-whatsapp"></i> Contact
-                            </NavLink>
-                        </li>
+                        {!isAdmin && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/about"
+                                        className={
+                                            path == "/about" ? "active" : ""
+                                        }
+                                    >
+                                        <i className="bx bx-info-circle"></i>{" "}
+                                        About
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/contact"
+                                        className={
+                                            path == "/contact" ? "active" : ""
+                                        }
+                                    >
+                                        <i className="bx  bxl-whatsapp"></i>{" "}
+                                        Contact
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
                         {/*If User Logged In */}
                         {getInfo().token && (
                             <li>
