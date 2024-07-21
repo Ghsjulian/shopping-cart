@@ -1,16 +1,24 @@
 <body>
+    <form enctype=""></form>
     <h2 id="name" class="name">Ghs Julian</h2>
     <script>
-        const str = {
-            name: "Ghs Julian",
-            dev: "Web Developer"
-        };
-for (let key in str){
-    console.log(key);
-}
+        var data = [
+            {
+                user: "getInfo",
+                product_id: "products_id",
+                product_img: "productsproduct_img",
+                product_title: "productsproduct_title",
+                price: "product_descprice",
+                quantity: "32"
+            }
+        ];
+        // localStorage.setItem("cartList", JSON.stringify(data));
+        // let obj = JSON.stringify(data)
+        // localStorage.setItem("cartList",obj);
+
         window.location.href = "http://localhost:5173/latest-products";
         /*  window.location.href =
-                     "http://localhost:5000/api/admin/edit-product/6697415a38d7ebef85f028b3";
-                     **/
+                         "http://localhost:5000/api/admin/edit-product/6697415a38d7ebef85f028b3";
+                         **/
     </script>
 </body>

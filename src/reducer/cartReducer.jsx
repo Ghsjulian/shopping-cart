@@ -1,5 +1,8 @@
 const cartReducer = (state, action) => {
     switch (action.type) {
+        case "INIT":
+            const {init} = action.payload;
+            return {...state, cart :[...state.cart ,init]}
         case "ADD_TO_CART":
             const { product } = action.payload;
             // console.log(...state.cart);

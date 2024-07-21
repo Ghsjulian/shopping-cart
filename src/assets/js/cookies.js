@@ -48,6 +48,7 @@ api.getData(url, res => {
     console.log(res);
 });
 */
+
 var api = new API();
 
 export default api;

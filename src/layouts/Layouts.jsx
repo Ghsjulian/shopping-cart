@@ -13,6 +13,8 @@ import "../assets/css/responsive.css";
 import "../assets/vendor/bootstrap-icons/bootstrap-icons.css";
 import "../assets/vendor/boxicons/css/boxicons.min.css";
 import "../assets/vendor/remixicon/remixicon.css";
+import TestCart from "../components/TestCart"
+
 
 const Layouts = ({ children }) => {
     useEffect(() => {

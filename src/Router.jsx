@@ -18,6 +18,8 @@ import AddProduct from "./admin/AddProduct";
 import AllProducts from "./admin/AllProducts";
 import EditProduct from "./admin/EditProduct";
 /* Admin Components Here */
+import TestCart from "./components/TestCart"
+
 
 const MyRoutes = [
     {
@@ -138,6 +140,11 @@ const MyRoutes = [
     {
         path: "*",
         element: <NotFound />
+    },
+    /* Test Cart Components */
+    {
+        path: "/test",
+        element: <TestCart />
     }
 ];
 

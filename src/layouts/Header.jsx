@@ -75,7 +75,8 @@ const Header = () => {
                                     path == "/latest-products" ? "active" : ""
                                 }
                             >
-                                <i className="bx bxs-shopping-bags"></i>Latest Products 
+                                <i className="bx bxs-shopping-bags"></i>Latest
+                                Products
                             </NavLink>
                         </li>
 
@@ -249,7 +250,7 @@ const Header = () => {
                             </>
                         )}
                         {/*If User Logged In */}
-                        {getInfo().token && (
+                        {getInfo().token && (<>
                             <li>
                                 <NavLink
                                     style={{ backgroundColor: "transparent" }}
@@ -265,6 +266,18 @@ const Header = () => {
                                     Logout
                                 </NavLink>
                             </li>
+                            <li>
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/cart"
+                                        className={
+                                            path == "/cart" ? "active" : ""
+                                        }
+                                    >
+                                        <i className="bx bx-cart"></i> Cart
+                                    </NavLink>
+                                </li>
+                                </>
                         )}
                         {/*If User Logged In */}
                     </ul>
@@ -282,7 +295,7 @@ const Header = () => {
                     <NavLink to="/notification">
                         <i className="bx bx-bell"></i>
                     </NavLink>
-                    <NavLink to="/cart">
+                    <NavLink to="/test">
                         <i className="bx bx-cart"></i>
                     </NavLink>
                 </div>

@@ -10,18 +10,27 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import { cartReducer } from "../reducer/cartReducer";
 import { getInfo } from "../Cookies";
-import { getCart } from "../context/getCart.js";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const CartContext = createContext();
 
+const getCart = () => {
+    const cartList = localStorage.getItem("cartList") ?? null;
+    if (cartList) {
+        return JSON.parse(cartList);
+    } else {
+        return null;
+    }
+};
+
 const initialstate = {
-    cart: getCart() ? getCart() :[]
+    cart: getCart() 
 };
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialstate);
 
     const addToCart = async (products, quantity) => {
+        const cartList = localStorage.getItem("cart");
         const data = {
             user: getInfo(),
             product_id: products._id,
@@ -30,6 +39,8 @@ const CartProvider = ({ children }) => {
             price: products.product_desc.price,
             quantity
         };
+        localStorage.setItem("cartList", JSON.stringify([data]));
+        /*
         const response = await fetch(apiUrl + "/products/add-cart", {
             method: "POST",
             headers: {
@@ -43,8 +54,8 @@ const CartProvider = ({ children }) => {
         } else {
             alert("This Product Already In Your Cart List");
         }
+        */
     };
-    useEffect(() => {}, [state.cart]);
     return (
         <CartContext.Provider value={{ ...state, dispatch, addToCart }}>
             {children}
