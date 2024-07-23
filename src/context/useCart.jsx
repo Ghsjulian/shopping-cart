@@ -14,20 +14,17 @@ import { getInfo } from "../Cookies";
 const apiUrl = import.meta.env.VITE_API_URL;
 const CartContext = createContext();
 
-const getCart = () => {
-    const cartList = localStorage.getItem("cartList") ?? null;
-    if (cartList) {
-        return JSON.parse(cartList);
-    } else {
-        return null;
-    }
-};
-
 const initialstate = {
-    cart: getCart() 
+    cart: [] ||localStorage.getItem("cartList")
 };
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialstate);
+    const getCart = () => {
+        const cartList = localStorage.getItem("cartList");
+        if (cartList) {
+            return JSON.parse(cartList);
+        }
+    };
 
     const addToCart = async (products, quantity) => {
         const cartList = localStorage.getItem("cart");
@@ -39,7 +36,13 @@ const CartProvider = ({ children }) => {
             price: products.product_desc.price,
             quantity
         };
-        localStorage.setItem("cartList", JSON.stringify([data]));
+        // localStorage.setItem("cartList", JSON.stringify(data));
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: { product: data }
+        });
+        alert("Cart Added");
+
         /*
         const response = await fetch(apiUrl + "/products/add-cart", {
             method: "POST",
@@ -57,7 +60,9 @@ const CartProvider = ({ children }) => {
         */
     };
     return (
-        <CartContext.Provider value={{ ...state, dispatch, addToCart }}>
+        <CartContext.Provider
+            value={{ ...state, dispatch, addToCart, getCart }}
+        >
             {children}
         </CartContext.Provider>
     );

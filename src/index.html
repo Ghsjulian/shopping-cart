@@ -14,9 +14,9 @@
         ];
         // localStorage.setItem("cartList", JSON.stringify(data));
         // let obj = JSON.stringify(data)
-        // localStorage.setItem("cartList",obj);
-
-        window.location.href = "http://localhost:5173/latest-products";
+        let d = localStorage.getItem("cartList");
+        console.log(JSON.parse(d));
+        window.location.href = "http://localhost:5173/";
         /*  window.location.href =
                          "http://localhost:5000/api/admin/edit-product/6697415a38d7ebef85f028b3";
                          **/

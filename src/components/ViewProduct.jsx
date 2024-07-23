@@ -16,7 +16,6 @@ const ViewProduct = () => {
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantitiy] = useState(1);
-
     const fetchProduct = async () => {
         try {
             setIsLoading(true);
@@ -46,6 +45,10 @@ const ViewProduct = () => {
         <>
             {products && (
                 <>
+                    {
+                        (document.title =
+                            "View Products - " + products.product_title)
+                    }
                     <section data-aos="zoom-in" id="view" className="page">
                         <img
                             id="product-img"
