@@ -7,13 +7,18 @@ import product4 from "../assets/products/tshirt_4.png";
 import { useCart } from "../context/useCart";
 
 const Cart = () => {
-    const [quantity, setQuantity] = useState(0);
-    const { cart , dispatch } = useCart();
-    const handleQuantity = (id, index) => {
+    const { cart, dispatch } = useCart();
+    const handleQuantity = id => {
         dispatch({
-            type : "SET_QUANTITY",
-            payload : {product_id:id}
-        })
+            type: "SET_QUANTITY",
+            payload: { product_id: id }
+        });
+    };
+    const decreaseQuantity = id => {
+        dispatch({
+            type: "DECREASE_QUANTITY",
+            payload: { id }
+        });
     };
     return (
         <section data-aos="zoom-in" id="view" className="page">
@@ -35,21 +40,17 @@ const Cart = () => {
                         <div className="cart-col">
                             <div id="cart-btn">
                                 <button
-                                    onClick={() => {
-                                        handleQuantity(
-                                            product.product_id,
-                                            index
-                                        );
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        handleQuantity(product.product_id);
                                     }}
                                 >
                                     +
                                 </button>
                                 <button
-                                    onClick={() => {
-                                        handleQuantity(
-                                            product.product_id,
-                                            index
-                                        );
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        decreaseQuantity(product.product_id);
                                     }}
                                 >
                                     -

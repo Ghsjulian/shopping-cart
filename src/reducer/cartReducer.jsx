@@ -9,11 +9,32 @@ const cartReducer = (state, action) => {
             return { ...state, cart: [...state.cart, product] };
         case "SET_QUANTITY":
             const { product_id } = action.payload;
-            const newCart = state.cart.filter(
-                item => item.product_id === action.payload.product_id,
-                (item.quantity += 1)
-            );
-            console.log(newCart);
+            const newCart = state.cart.filter(item => {
+                if (item.product_id === product_id) {
+                    item.quantity += 1;
+                    /*
+                    // Increase The Price
+                    item.price =
+                        parseInt(item.price.replace("TK BDT", "").trim()) *
+                        item.quantity;*/
+                    localStorage.setItem(
+                        "cartList",
+                        JSON.stringify(state.cart)
+                    );
+                    return { ...state, cart: [...state.cart] };
+                }
+            });
+        case "DECREASE_QUANTITY":
+            const id = action.payload.id;
+            state.cart.filter(item => {
+                if (item.product_id === id) {
+                    item.quantity -= 1;
+                    localStorage.setItem(
+                        "cartList",
+                        JSON.stringify(state.cart)
+                    );
+                }
+            });
 
         case "REMOVE_CART":
             return {
