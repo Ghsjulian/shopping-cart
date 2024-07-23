@@ -6,11 +6,13 @@ const Footer = () => {
         <footer className="footer">
             <p>
                 © <span>Copyright</span>
-                
                 <span> All Rights Reserved</span>
             </p>
             <p>
-                Designed by -<NavLink to="/"> Ghs Julian</NavLink>
+                Designed by -
+                <NavLink target="_blank" to="https://ghsresume.netlify.app">
+                    Ghs Julian
+                </NavLink>
             </p>
         </footer>
     );

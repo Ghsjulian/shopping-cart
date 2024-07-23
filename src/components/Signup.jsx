@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { setCookie } from "../Cookies";
 
 const Signup = () => {
+        document.title = "Sign Up And Create An Account | Shopping Cart";
     const navigate = useNavigate();
     const messageRef = useRef(null);
     const otpMessage = useRef(null);

@@ -65,7 +65,6 @@
  8.   "react-router-dom": "^6.23.1",
  9    "react-simply-carousel": "^9.1.3",
  10.  "react-slick": "^0.30.2",
- 11.  "react-typed": "^2.0.12"
 
 
 ---

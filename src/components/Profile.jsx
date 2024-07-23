@@ -2,6 +2,7 @@ import React from "react";
 import ghs from "../assets/img/ghs_10.png";
 
 const Profile = () => {
+        document.title = "User Profile | Shopping Cart";
     return (
         <section data-aos="zoom-in" className="page" id="products">
             <div className="profile">

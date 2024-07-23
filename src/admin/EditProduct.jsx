@@ -4,6 +4,7 @@ import axios from "axios";
 import ghs from "../assets/products/tshirt_1.png";
 
 const EditProduct = () => {
+        document.title = "Edit And Update Existing Product - Shopping Cart";
     const param = useParams();
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);

@@ -41,6 +41,7 @@ const NotFound = () => {
                 </h2>
                 <NavLink
                     style={{
+                        fontSize: "30px",
                         textDecoration: "none",
                         outline: "none",
                         color: "#88d300",

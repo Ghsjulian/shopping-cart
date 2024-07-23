@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { setCookie } from "../Cookies";
 
 const Login = () => {
+    document.title = "Login To Your Account | Shopping Cart"
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);

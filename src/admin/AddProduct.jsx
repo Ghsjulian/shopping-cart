@@ -4,6 +4,7 @@ import axios from "axios";
 import ghs from "../assets/products/tshirt_1.png";
 
 const AddProduct = () => {
+        document.title = "Add New Product - Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);

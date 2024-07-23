@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
-import product1 from "../assets/products/tshirt_1.png";
-import product2 from "../assets/products/tshirt_2.png";
-import product3 from "../assets/products/tshirt_3.png";
-import product4 from "../assets/products/tshirt_4.png";
 import { useCart } from "../context/useCart";
 
 const Cart = () => {
+    document.title = "Your Cart - See Your Cart List | Shopping Cart";
     const { cart, dispatch } = useCart();
     const handleQuantity = id => {
         dispatch({
