@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { NavLink,useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
 
 const Cart = () => {
     document.title = "Your Cart - See Your Cart List | Shopping Cart";
     const { cart, dispatch } = useCart();
+  const navigate  = useNavigate()
+  const viewProduct = (id)=>{
+      navigate(`/view-product/${id}`)
+  }
     const handleQuantity = id => {
         dispatch({
             type: "SET_QUANTITY",
@@ -54,8 +59,8 @@ const Cart = () => {
                                 </button>
                             </div>
                             <div id="action-btn">
-                                <button>
-                                    <i className="bx bx-show"></i>
+                                <button onClick={()=>viewProduct(product.product_id)}>
+                                        <i className="bx bx-show"></i>
                                 </button>
                                 <button>
                                     <i className="bx bxs-trash"></i>

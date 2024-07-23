@@ -15,7 +15,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const CartContext = createContext();
 
 const initialstate = {
-    cart: [] ||localStorage.getItem("cartList")
+    cart: [] || localStorage.getItem("cartList")
 };
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialstate);
@@ -36,12 +36,11 @@ const CartProvider = ({ children }) => {
             price: products.product_desc.price,
             quantity
         };
-        // localStorage.setItem("cartList", JSON.stringify(data));
         dispatch({
             type: "ADD_TO_CART",
             payload: { product: data }
         });
-        alert("Cart Added");
+        // alert("Cart Added");
 
         /*
         const response = await fetch(apiUrl + "/products/add-cart", {
@@ -59,6 +58,11 @@ const CartProvider = ({ children }) => {
         }
         */
     };
+  const isCart = ()=>{
+      cart.filter(item => {
+                if (item.product_id === product_id) {
+}})
+  }
     return (
         <CartContext.Provider
             value={{ ...state, dispatch, addToCart, getCart }}

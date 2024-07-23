@@ -206,6 +206,30 @@ nav,
     cursor: pointer;
     color: #fff;
 }
+.top-bar-links a #noti {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 2px;
+    right: 10.8px;
+    padding: 0.3rem;
+    background: #ff0000;
+    border-radius: 50%;
+    font-weight: 900;
+}
+.nav-menu a #noti {
+    width: 25px;
+    height: 25px;
+    margin-left: 5rem;
+    padding: 0.3rem;
+    background: #ff0000;
+    border-radius: 50%;
+    font-weight: 900;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 .top-bar button {
     background: transparent;
     outline: none;

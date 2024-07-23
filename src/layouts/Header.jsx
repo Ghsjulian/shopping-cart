@@ -2,8 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import ghs from "../assets/img/ghs_10.png";
 import { getInfo, isAdmin, deleteCookie } from "../Cookies";
+import { useCart } from "../context/useCart";
 
 const Header = () => {
+    const { cart } = useCart();
     const navigate = useNavigate();
     const flashRef = useRef(null);
     const flashMessage = useRef(null);
@@ -250,23 +252,26 @@ const Header = () => {
                             </>
                         )}
                         {/*If User Logged In */}
-                        {getInfo().token && (<>
-                            <li>
-                                <NavLink
-                                    style={{ backgroundColor: "transparent" }}
-                                    onClick={() => {
-                                        logout();
-                                    }}
-                                    to="#"
-                                    className={
-                                        path == "/logout" ? "active" : ""
-                                    }
-                                >
-                                    <i className="bx bx-log-out-circle"></i>
-                                    Logout
-                                </NavLink>
-                            </li>
-                            <li>
+                        {getInfo().token && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        style={{
+                                            backgroundColor: "transparent"
+                                        }}
+                                        onClick={() => {
+                                            logout();
+                                        }}
+                                        to="#"
+                                        className={
+                                            path == "/logout" ? "active" : ""
+                                        }
+                                    >
+                                        <i className="bx bx-log-out-circle"></i>
+                                        Logout
+                                    </NavLink>
+                                </li>
+                                <li>
                                     <NavLink
                                         onClick={closeHeader}
                                         to="/cart"
@@ -275,9 +280,12 @@ const Header = () => {
                                         }
                                     >
                                         <i className="bx bx-cart"></i> Cart
+                                        {cart.length > 0 && (
+                            <span id="noti">{cart.length}</span>
+                        )}
                                     </NavLink>
                                 </li>
-                                </>
+                            </>
                         )}
                         {/*If User Logged In */}
                     </ul>
@@ -295,8 +303,11 @@ const Header = () => {
                     <NavLink to="/notification">
                         <i className="bx bx-bell"></i>
                     </NavLink>
-                    <NavLink to="/test">
+                    <NavLink to="/cart">
                         <i className="bx bx-cart"></i>
+                        {cart.length > 0 && (
+                            <span id="noti">{cart.length}</span>
+                        )}
                     </NavLink>
                 </div>
             </nav>
