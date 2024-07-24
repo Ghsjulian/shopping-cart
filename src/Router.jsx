@@ -4,6 +4,7 @@ import PrivatePath from "./Protection/PrivatePath";
 import AdminProdtection from "./Protection/AdminProdtection";
 import Home from "./pages/Home";
 import About from "./components/AboutSection";
+import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Signup from "./components/Signup";
@@ -36,6 +37,14 @@ const MyRoutes = [
         element: (
             <Layouts>
                 <About isTrue={true} />
+            </Layouts>
+        )
+    },
+    {
+        path: "/contact",
+        element: (
+            <Layouts>
+                <Contact isTrue={true} />
             </Layouts>
         )
     },
@@ -87,7 +96,7 @@ const MyRoutes = [
             </PrivatePath>
         )
     },
-     {
+    {
         path: "/latest-products",
         element: (
             <Layouts>
@@ -95,7 +104,7 @@ const MyRoutes = [
             </Layouts>
         )
     },
-     {
+    {
         path: "/search/:query",
         element: (
             <Layouts>

@@ -23,16 +23,16 @@ const Contact = ({ isTrue }) => {
                     <img
                         data-aos="zoom-in"
                         id="user"
-                        src={ghs}
+                        src="./images/ghs-dev.jpg"
                         alt="Ghs Julian Web Developer Designer"
                     />
-                    <h3>
+                    <h4>
                         <i className="bx bx-message-rounded"></i> Email :
                         info.ghs85@gmail.com
-                    </h3>
-                    <h3>
+                    </h4>
+                    <h4>
                         <i className="bx bx-phone-call"></i>Phone : 01302661227
-                    </h3>
+                    </h4>
                 </div>
                 <div data-aos="zoom-in" className="col">
                     <div className="form">

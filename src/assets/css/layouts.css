@@ -433,6 +433,7 @@ section #heading {
     text-align: center;
     align-items: center;
     margin: 0.5rem auto;
+    color: #0eb7ff;
     width: 50%;
     border-bottom: 2px solid #00b9cb;
 }
@@ -457,11 +458,12 @@ section #heading {
     padding: 0.5rem 0;
     margin: 0.5rem auto;
     text-align: justify;
-    line-height: 2rem;
+    line-height: 2.5rem;
     font-weight: 400;
     font-size: 18px;
     font-family: ghs;
     word-spacing: 2.2px;
+    color: #444444;
 }
 /* Projects Section Styling */
 section .grid-row {
@@ -557,11 +559,12 @@ section .skill-row {
     margin: 0.5rem auto;
     text-transform: capitalize;
     text-align: center;
-    line-height: 2rem;
+    line-height: 2.5rem;
     font-weight: 400;
     font-size: 18px;
     font-family: ghs;
     word-spacing: 2.2px;
+    color: #515151;
 }
 .col .form {
     width: 100%;
@@ -621,16 +624,18 @@ section .skill-row {
 .form button:hover {
     background: #00c134;
 }
-#contact h3 {
+#contact h4 {
     display: flex;
-    text-align: left;
+    text-align: center;
     align-items: center;
+    justify-content: center;
     margin: 0.5rem;
+    color: #515151;
 }
 #contact h3 i {
-    color: #03f5ff;
-    font-size: 19px;
-    margin: 0.5rem 0.5rem;
+    color: #00a6ad;
+    font-size: 23px;
+    margin: 0.5rem 0.7rem;
     padding: 0.3rem 0;
 }
 

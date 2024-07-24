@@ -12,7 +12,7 @@ const AboutSection = ({isTrue}) => {
                 <div data-aos="zoom-in" className="col">
                     <img
                         id="user"
-                        src={ghs}
+                        src="./images/ghs-dev.jpg"
                         alt="Ghs Julian Web Developer Designer"
                     />
                 </div>
