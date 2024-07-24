@@ -1,7 +1,7 @@
 <center>
 <br><br>
 <center>
-<img align="center" src="public/screenshots/android-chrome-512x512.png" width="250" height="250"><br>
+<img align="center" src="public/ss_demo/android-chrome-512x512.png" width="250" height="250"><br>
 </center>
 <h4 align="center">Web Developer & Designer - Ghs Julian</h4>
 </b>
@@ -96,11 +96,21 @@ VITE_ADMIN_ID=669654273140bd66be3b9726
 
 <h3>SCREENSHOT AND DEMO : </h3><br>
 
-<img align="center" src="public/screenshots/Screenshot_2024-07-19-17-17-53-76_a87fd7db6caa850b517aa6fa9d2fcd0e.jpg" width="330" height="300"><br><br>
-<img align="center" src="public/screenshots/Screenshot_2024-07-19-17-17-30-59_a87fd7db6caa850b517aa6fa9d2fcd0e.jpg" width="330" height="300"><br><br>
-<img align="center" src="public/screenshots/Screenshot_2024-07-19-17-16-58-90_a87fd7db6caa850b517aa6fa9d2fcd0e.jpg" width="330" height="300"><br><br>
-<img align="center" src="public/screenshots/Screenshot_2024-07-19-17-16-48-41_a87fd7db6caa850b517aa6fa9d2fcd0e.jpg" width="330" height="300"><br><br>
-<img align="center" src="public/screenshots/Screenshot_2024-07-19-17-16-25-45_a87fd7db6caa850b517aa6fa9d2fcd0e.jpg" width="330" height="300"><br><br>
+<img align="center" src="public/ss_demo/s1.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s2.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s3.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s4.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s5.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s6.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s7.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s8.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s9.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s10.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s11.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s13.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s14.jpg" width="335" height="335"><br><br>
+<img align="center" src="public/ss_demo/s15.jpg" width="335" height="335"><br><br>
+
 
 ---
 
