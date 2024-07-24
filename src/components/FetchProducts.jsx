@@ -12,7 +12,6 @@ const FetchProducts = ({ category }) => {
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
 
-
     const fetchProduct = async () => {
         try {
             setIsLoading(true);
@@ -41,7 +40,6 @@ const FetchProducts = ({ category }) => {
         <>
             <div className="grid-area">
                 {isLoading && <Loader text="Loading..." />}
-                {!isProducts && <h2> No Product Found </h2>}
                 {products &&
                     products.map((product, index) => {
                         return (

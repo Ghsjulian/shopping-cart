@@ -1,6 +1,7 @@
 import Layouts from "./layouts/Layouts";
 import Protect from "./Protection/Protect";
 import PrivatePath from "./Protection/PrivatePath";
+import AdminProdtection from "./Protection/AdminProdtection";
 import Home from "./pages/Home";
 import About from "./components/AboutSection";
 import Projects from "./components/Projects";
@@ -106,41 +107,41 @@ const MyRoutes = [
     {
         path: "/admin/dashboard",
         element: (
-            <PrivatePath>
+            <AdminProdtection>
                 <Layouts>
                     <Dashboard />
                 </Layouts>
-            </PrivatePath>
+            </AdminProdtection>
         )
     },
     {
         path: "/admin/add-product",
         element: (
-            <PrivatePath>
+            <AdminProdtection>
                 <Layouts>
                     <AddProduct />
                 </Layouts>
-            </PrivatePath>
+            </AdminProdtection>
         )
     },
     {
         path: "/admin/products",
         element: (
-            <PrivatePath>
+            <AdminProdtection>
                 <Layouts>
                     <AllProducts />
                 </Layouts>
-            </PrivatePath>
+            </AdminProdtection>
         )
     },
     {
         path: "/admin/edit-product/:id",
         element: (
-            <PrivatePath>
+            <AdminProdtection>
                 <Layouts>
                     <EditProduct />
                 </Layouts>
-            </PrivatePath>
+            </AdminProdtection>
         )
     },
     /* Admin Routes Here */

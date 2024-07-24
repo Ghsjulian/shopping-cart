@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { setCookie } from "../Cookies";
 
 const Signup = () => {
-        document.title = "Sign Up And Create An Account | Shopping Cart";
+    document.title = "Sign Up And Create An Account | Shopping Cart";
     const navigate = useNavigate();
     const messageRef = useRef(null);
     const otpMessage = useRef(null);
@@ -42,6 +42,11 @@ const Signup = () => {
         signupRef.current.style.display = "none";
         otpRef.current.style.display = "flex";
     };
+    const closeOtPForm = () => {
+        signupRef.current.style.display = "flex";
+        otpRef.current.style.display = "none";
+    };
+
     const verifyEmail = async () => {
         let info = JSON.parse(localStorage.getItem("user"));
         const url = import.meta.env.VITE_API_URL;
@@ -175,7 +180,7 @@ const Signup = () => {
                 className="signup-form"
                 ref={otpRef}
             >
-                <span id="skip">Skip Now</span>
+                <span id="skip" onClick={closeOtPForm}>Skip Now</span>
                 <h3> Please Check Your Email</h3>
                 <span ref={otpMessage} id="message"></span>
                 <input

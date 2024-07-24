@@ -88,20 +88,8 @@ const Header = () => {
                                 <i className="bx bx-home"></i>Home
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                onClick={closeHeader}
-                                to="/latest-products"
-                                className={
-                                    path == "/latest-products" ? "active" : ""
-                                }
-                            >
-                                <i className="bx bxs-shopping-bags"></i>Latest
-                                Products
-                            </NavLink>
-                        </li>
 
-                        {isAdmin && getInfo().token && (
+                        {isAdmin() && getInfo().token && (
                             <>
                                 <li>
                                     <NavLink
@@ -146,7 +134,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {getInfo().token && !isAdmin && (
+                        {!isAdmin() && getInfo().token && (
                             <>
                                 <li>
                                     <NavLink
@@ -183,6 +171,9 @@ const Header = () => {
                                         }
                                     >
                                         <i className="bx bx-cart"></i> Cart
+                                        {cart.length > 0 && (
+                                            <span id="noti">{cart.length}</span>
+                                        )}
                                     </NavLink>
                                 </li>
                                 <li>
@@ -211,7 +202,18 @@ const Header = () => {
                                 Categories
                             </NavLink>
                         </li>
-
+<li>
+                            <NavLink
+                                onClick={closeHeader}
+                                to="/latest-products"
+                                className={
+                                    path == "/latest-products" ? "active" : ""
+                                }
+                            >
+                                <i className="bx bxs-shopping-bags"></i>Latest
+                                Products
+                            </NavLink>
+                        </li>
                         {/* If User Not Login */}
                         {!getInfo().token && (
                             <>
@@ -242,7 +244,7 @@ const Header = () => {
                             </>
                         )}
                         {/* If User Not Login */}
-                        {!isAdmin && (
+                        {!isAdmin() && (
                             <>
                                 <li>
                                     <NavLink
@@ -290,20 +292,6 @@ const Header = () => {
                                         Logout
                                     </NavLink>
                                 </li>
-                                <li>
-                                    <NavLink
-                                        onClick={closeHeader}
-                                        to="/cart"
-                                        className={
-                                            path == "/cart" ? "active" : ""
-                                        }
-                                    >
-                                        <i className="bx bx-cart"></i> Cart
-                                        {cart.length > 0 && (
-                                            <span id="noti">{cart.length}</span>
-                                        )}
-                                    </NavLink>
-                                </li>
                             </>
                         )}
                         {/*If User Logged In */}
@@ -326,9 +314,12 @@ const Header = () => {
                             placeholder="Search..."
                         />
                     </div>
-                    <NavLink to={query && `/search/${query.toLocaleLowerCase()}`}>
+                    <NavLink
+                        to={query && `/search/${query.toLocaleLowerCase()}`}
+                    >
                         <i className="bx bx-search-alt-2"></i>
                     </NavLink>
+                     {getInfo().token && (<>
                     <NavLink to="/notification">
                         <i className="bx bx-bell"></i>
                     </NavLink>
@@ -338,6 +329,7 @@ const Header = () => {
                             <span id="noti">{cart.length}</span>
                         )}
                     </NavLink>
+                   </> )}
                 </div>
             </nav>
             <div ref={flashRef}>

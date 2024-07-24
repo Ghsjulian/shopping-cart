@@ -11,6 +11,6 @@ const PrivatePath = ({ children }) => {
             navigate("/login");
         }
     }, [cookies]);
-    return cookies.token && cookies.userId === "669654273140bd66be3b9726" && children;
+    return cookies.token && children;
 };
 export default PrivatePath;
