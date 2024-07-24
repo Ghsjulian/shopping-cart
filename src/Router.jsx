@@ -12,14 +12,13 @@ import LatestProducts from "./components/LatestProducts";
 import Profile from "./components/Profile";
 import ViewProduct from "./components/ViewProduct";
 import Cart from "./components/Cart";
+import SearchView from "./components/SearchView";
 /* Admin Components Here */
 import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
 import AllProducts from "./admin/AllProducts";
 import EditProduct from "./admin/EditProduct";
 /* Admin Components Here */
-import TestCart from "./components/TestCart"
-
 
 const MyRoutes = [
     {
@@ -87,6 +86,22 @@ const MyRoutes = [
             </PrivatePath>
         )
     },
+     {
+        path: "/latest-products",
+        element: (
+            <Layouts>
+                <LatestProducts />
+            </Layouts>
+        )
+    },
+     {
+        path: "/search/:query",
+        element: (
+            <Layouts>
+                <SearchView />
+            </Layouts>
+        )
+    },
     /* Admin Routes Here */
     {
         path: "/admin/dashboard",
@@ -105,7 +120,7 @@ const MyRoutes = [
                 <Layouts>
                     <AddProduct />
                 </Layouts>
-                </PrivatePath>
+            </PrivatePath>
         )
     },
     {
@@ -115,7 +130,7 @@ const MyRoutes = [
                 <Layouts>
                     <AllProducts />
                 </Layouts>
-                </PrivatePath>
+            </PrivatePath>
         )
     },
     {
@@ -125,26 +140,13 @@ const MyRoutes = [
                 <Layouts>
                     <EditProduct />
                 </Layouts>
-                </PrivatePath>
+            </PrivatePath>
         )
     },
-    /* Admin Routes Here */ 
-    {
-        path: "/latest-products",
-        element: (
-            <Layouts>
-                <LatestProducts />
-            </Layouts>
-        )
-    },
+    /* Admin Routes Here */
     {
         path: "*",
         element: <NotFound />
-    },
-    /* Test Cart Components */
-    {
-        path: "/test",
-        element: <TestCart />
     }
 ];
 

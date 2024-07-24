@@ -9,6 +9,35 @@
         width: 75%;
         animation: left-animation 0.2s linear;
     }
+    .header .search-container {
+        display: flex;
+        align-items: center;
+        margin: 0.3rem auto;
+        border-radius: 150px;
+        padding: 0 0.7rem;
+        border: 2px solid #fff;
+        text-align: center;
+        width: 85%;
+    }
+    .search-container input {
+        outline: none;
+        border: none;
+        padding: 0.2rem 0.3rem;
+        margin: 0;
+        border-radius: 15px;
+        width: 100%;
+        color: #fff;
+        font-weight: 500;
+    }
+    .search-container a {
+        background: transparent;
+        text-decoration: none;
+        border-radius: 50%;
+        font-size: 18px;
+        margin-top: 0.5rem;
+        color: #fff;
+        text-align: center;
+    }
     nav,
     .top-bar {
         width: 100%;
@@ -85,7 +114,7 @@
         grid-template-rows: repeat(auto-fill, minmax(auto, 1fr));
     }
     .grid-col {
-        padding: .2rem .3rem;
+        padding: 0.2rem 0.3rem;
     }
     .grid-area .grid-col img {
         height: 150px;

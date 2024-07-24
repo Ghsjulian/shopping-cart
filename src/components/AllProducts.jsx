@@ -2,17 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
+import { useCart } from "../context/useCart";
+
 
 const AllProducts = () => {
     const navigate = useNavigate();
+    const { state, dispatch, cart, addToCart, isCart } = useCart();
     const apiUrl = import.meta.env.VITE_API_URL;
     const [products, setProducts] = useState(null);
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-const AddToCart = (id) =>{
-       alert(id)
-   }
-
+    
 
     const fetchProduct = async () => {
         try {
@@ -60,9 +60,7 @@ const AddToCart = (id) =>{
                                         <span>View Product</span>
                                     </NavLink>
                                     <NavLink
-                                        onClick={() => {
-                                            AddToCart(product._id);
-                                        }}
+                                        onClick={() => addToCart(product, 1)}
                                         to="#"
                                     >
                                         <i className="bx bxs-cart-add"></i>

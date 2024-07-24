@@ -91,6 +91,9 @@ header,
     background-size: 100% 100%;
     */
 }
+.header .search-container {
+    display: none;
+}
 .header img {
     width: 200px;
     height: 200px;
@@ -189,6 +192,31 @@ nav,
     justify-content: space-between;
     align-items: center;
 }
+
+.top-bar-links .search {
+    display: block;
+    align-items: center;
+    margin: 0.3rem auto;
+    border-radius: 150px;
+    padding: 0.3rem;
+    border: 2px solid #fff;
+    width: 80%;
+}
+.search input {
+    outline: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border-radius: 15px;
+    width: 100%;
+    color: #fff;
+    font-weight: 500;
+}
+.search input:focus {
+    outline: none;
+    border: none;
+}
+
 .top-bar a {
     cursor: pointer;
     text-decoration: none;

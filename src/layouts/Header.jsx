@@ -10,6 +10,7 @@ const Header = () => {
     const flashRef = useRef(null);
     const flashMessage = useRef(null);
     const headerRef = useRef(null);
+    const [query, setQuery] = useState(null);
     const [isOpen, setisOpen] = useState(false);
     const openHeader = () => {
         headerRef.current.classList.toggle("show-header");
@@ -59,6 +60,24 @@ const Header = () => {
             <header ref={headerRef} className="header" data-aos="zoom-in">
                 <div className="nav-menu" data-aos="zoom-in">
                     <h2>Main Menu </h2>
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            onChange={e => {
+                                setQuery(e.target.value);
+                            }}
+                            value={query}
+                            placeholder="Search..."
+                        />
+                        <NavLink
+                            onClick={() => {
+                                query && closeHeader();
+                            }}
+                            to={query && `/search/${query.toLocaleLowerCase()}`}
+                        >
+                            <i className="bx bx-search-alt-2"></i>
+                        </NavLink>
+                    </div>
                     <ul>
                         <li>
                             <NavLink
@@ -281,8 +300,8 @@ const Header = () => {
                                     >
                                         <i className="bx bx-cart"></i> Cart
                                         {cart.length > 0 && (
-                            <span id="noti">{cart.length}</span>
-                        )}
+                                            <span id="noti">{cart.length}</span>
+                                        )}
                                     </NavLink>
                                 </li>
                             </>
@@ -297,7 +316,17 @@ const Header = () => {
                     <i className={`bx bx-${isOpen ? "x" : "menu"}`}></i>
                 </button>
                 <div className="top-bar-links">
-                    <NavLink to="#">
+                    <div className="search">
+                        <input
+                            type="search"
+                            onChange={e => {
+                                setQuery(e.target.value);
+                            }}
+                            value={query}
+                            placeholder="Search..."
+                        />
+                    </div>
+                    <NavLink to={query && `/search/${query.toLocaleLowerCase()}`}>
                         <i className="bx bx-search-alt-2"></i>
                     </NavLink>
                     <NavLink to="/notification">
