@@ -58,14 +58,18 @@ const CartProvider = ({ children }) => {
         }
         */
     };
-  const isCart = ()=>{
-      cart.filter(item => {
-                if (item.product_id === product_id) {
-}})
-  }
+    const isCart = (cart, id) => {
+         cart.filter(item => {
+            if (item.product_id === id) {
+                console.log(item);
+            } else {
+                console.log(item);
+            }
+        });
+    };
     return (
         <CartContext.Provider
-            value={{ ...state, dispatch, addToCart, getCart }}
+            value={{ ...state, dispatch, addToCart, getCart, isCart }}
         >
             {children}
         </CartContext.Provider>

@@ -12,11 +12,6 @@ const cartReducer = (state, action) => {
             const newCart = state.cart.filter(item => {
                 if (item.product_id === product_id) {
                     item.quantity += 1;
-                    /*
-                    // Increase The Price
-                    item.price =
-                        parseInt(item.price.replace("TK BDT", "").trim()) *
-                        item.quantity;*/
                     localStorage.setItem(
                         "cartList",
                         JSON.stringify(state.cart)

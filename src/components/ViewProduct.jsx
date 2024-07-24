@@ -8,7 +8,7 @@ import FetchProducts from "./FetchProducts";
 import { useCart } from "../context/useCart";
 
 const ViewProduct = () => {
-    const { state, dispatch, cart, addToCart } = useCart();
+    const { state, dispatch, cart, addToCart, isCart } = useCart();
     const { id } = useParams();
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -16,6 +16,7 @@ const ViewProduct = () => {
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantitiy] = useState(1);
+
     const fetchProduct = async () => {
         try {
             setIsLoading(true);
@@ -39,7 +40,6 @@ const ViewProduct = () => {
         if (isLoading) {
             return;
         }
-        console.log(cart);
     }, [id]);
     return (
         <>
@@ -111,16 +111,23 @@ const ViewProduct = () => {
                                     </button>
                                 </div>
                                 <div className="flex-btn">
-                                    <a
-                                        onClick={() =>
-                                            addToCart(products, quantity)
-                                        }
-                                        id="cart"
-                                        href="#"
-                                    >
-                                        <i className="bx bx-cart-add"></i>
-                                        <span>Add Cart</span>
-                                    </a>
+                                    {isCart(cart, products._id) ? (
+                                        <a id="cart" href="#">
+                                            <i className="bx bx-cart-check"></i>
+                                            <span>Cart Added</span>
+                                        </a>
+                                    ) : (
+                                        <a
+                                            onClick={() =>
+                                                addToCart(products, quantity)
+                                            }
+                                            id="cart"
+                                            href="#"
+                                        >
+                                            <i className="bx bx-cart-add"></i>
+                                            <span>Add Cart</span>
+                                        </a>
+                                    )}
                                     <a id="fav" href="#">
                                         <i className="bx bx-heart"></i>
                                         <span>Add Favorites</span>
