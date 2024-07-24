@@ -5,7 +5,7 @@ const cartReducer = (state, action) => {
             return { ...state, cart: [...state.cart, init] };
         case "ADD_TO_CART":
             const { product } = action.payload;
-            localStorage.setItem("cartList", JSON.stringify(state.cart));
+            //localStorage.setItem("cartList", JSON.stringify(state.cart));
             return { ...state, cart: [...state.cart, product] };
         case "SET_QUANTITY":
             const { product_id } = action.payload;

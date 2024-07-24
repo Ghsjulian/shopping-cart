@@ -6,21 +6,20 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import LatestProducts from "../components/LatestProducts";
-import { getInfo } from "../Cookies";
+import { getInfo, isAdmin } from "../Cookies";
 import { useCart } from "../context/useCart";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     document.title =
         "Shopping Cart Official Website - Designed By Web Developer Ghs Julian";
     const { cart, dispatch, getCart } = useCart();
-
+    const navigate = useNavigate();
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" }), [];
-      /*  dispatch({
-            type: "INIT",
-            payload: { init: getCart() }
-        });
-        */
+        if(isAdmin()){
+            navigate("/admin/dashboard")
+        }
     }, []);
 
     return (

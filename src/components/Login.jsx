@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { setCookie } from "../Cookies";
 
 const Login = () => {
-    document.title = "Login To Your Account | Shopping Cart"
+    document.title = "Login To Your Account | Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);
@@ -51,15 +51,12 @@ const Login = () => {
                 const info = JSON.stringify(responseData.data);
                 setCookie("e-comUser", info);
                 showMessage(responseData.type, responseData.success);
-                navigate("/");
-                /*
-               // When We Will Admin Access This Code Will Be Executed 
-                if(responseData.userType === "Admin - Ghs Julian"){
-                    navigate("/admin")
+                // When We Will Admin Access This Code Will Be Executed
+                if (responseData.user_type === "Admin") {
+                    navigate("/admin/dashboard");
                 } else {
-                    navigate("/")
+                    navigate("/");
                 }
-                */
             } else {
                 showMessage(responseData.type, responseData.error);
             }

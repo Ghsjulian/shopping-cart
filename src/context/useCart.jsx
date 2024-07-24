@@ -6,7 +6,7 @@ import {
     useContext,
     useReducer
 } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { cartReducer } from "../reducer/cartReducer";
 import { getInfo } from "../Cookies";
@@ -15,7 +15,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const CartContext = createContext();
 
 const initialstate = {
-    cart: [] || localStorage.getItem("cartList")
+    cart: JSON.parse(localStorage.getItem("cartList")) ?? []
 };
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialstate);
@@ -27,6 +27,9 @@ const CartProvider = ({ children }) => {
     };
 
     const addToCart = async (products, quantity) => {
+        // if (!getInfo().userId) {
+        //             navigate("/login");
+        //         }
         const cartList = localStorage.getItem("cart");
         const data = {
             user: getInfo(),
@@ -40,6 +43,8 @@ const CartProvider = ({ children }) => {
             type: "ADD_TO_CART",
             payload: { product: data }
         });
+        localStorage.setItem("cartList", JSON.stringify(state.cart));
+
         // alert("Cart Added");
 
         /*
@@ -59,13 +64,15 @@ const CartProvider = ({ children }) => {
         */
     };
     const isCart = (cart, id) => {
-         cart.filter(item => {
+        var res;
+        cart.filter(item => {
             if (item.product_id === id) {
-                console.log(item);
+                res = true;
             } else {
-                console.log(item);
+                res = false;
             }
         });
+        return res;
     };
     return (
         <CartContext.Provider
