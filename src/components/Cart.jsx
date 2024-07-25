@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
-import {getInfo} from "../Cookies"
+import { getInfo } from "../Cookies";
 
 const Cart = () => {
     document.title = "Your Cart - See Your Cart List | Shopping Cart";
-    const { cart, dispatch } = useCart();
+    const { cart, getCart, dispatch } = useCart();
     const navigate = useNavigate();
     const priceRef = useRef(null);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -25,16 +25,18 @@ const Cart = () => {
         return parseInt(newStr);
     };
     const setTotal = () => {
-        const localProduct = JSON.parse(localStorage.getItem("cartList"));
-        var prices = [];
-        var netprice = 0;
-        localProduct.forEach(item => {
-            prices.push(makeCount(item.price));
-        });
-        for (let index in prices) {
-            netprice += prices[index];
+        const localProduct = getCart(); //JSON.parse(localStorage.getItem("cartList"));
+        if (localProduct) {
+            var prices = [];
+            var netprice = 0;
+            localProduct.forEach(item => {
+                prices.push(makeCount(item.price));
+            });
+            for (let index in prices) {
+                netprice += prices[index];
+            }
+            priceRef.current.textContent = netprice + "TK BDT";
         }
-        priceRef.current.textContent = netprice + "TK BDT";
     };
     const handleQuantity = product => {
         const quantity = product.quantity + 1;
@@ -143,14 +145,45 @@ const Cart = () => {
                     </div>
                 );
             })}
-            <div className="total">
-                <h4>
-                    Total Price : <span ref={priceRef}></span>
-                </h4>
-                <button id="order" onClick={createOrder}>
-                    Place Order
-                </button>
-            </div>
+            {cart.length == 0 && (
+                <div
+                    className="signup-form"
+                    style={{
+                        width: "90%",
+                        maxWidth: "650px"
+                    }}
+                >
+                    <h2>
+                        <i
+                            style={{
+                                color: "#25d7ff",
+                                textAlign: "center",
+                                fontSize: "5rem",
+                                margin: ".5rem auto"
+                            }}
+                            className="ri ri-shopping-basket-line"
+                        ></i>
+                    </h2>
+                    <h4
+                        style={{
+                            textAlign: "center",
+                            margin: ".5rem auto"
+                        }}
+                    >
+                        No Item In Cart
+                    </h4>
+                </div>
+            )}
+            {cart && (
+                <div className="total">
+                    <h4>
+                        Total Price : <span ref={priceRef}></span>
+                    </h4>
+                    <button id="order" onClick={createOrder}>
+                        Place Order
+                    </button>
+                </div>
+            )}
         </section>
     );
 };
