@@ -20,7 +20,11 @@ const Cart = () => {
     };
     const handleQuantity = product => {
         const quantity = product.quantity + 1;
-        var countPrice = makeCount(product.price) * parseInt(quantity);
+        if (product.quantity == 5) {
+            return;
+        }
+        const currentPrice = makeCount(product.current_price);
+        var countPrice = makeCount(product.price) + currentPrice + "TK BDT";
         dispatch({
             type: "SET_QUANTITY",
             payload: {
@@ -30,10 +34,28 @@ const Cart = () => {
             }
         });
     };
-    const decreaseQuantity = id => {
+    const decreaseQuantity = product => {
+        var quantity = product.quantity - 1;
+        if (product.quantity == 1) {
+            return;
+        }
+        const currentPrice = makeCount(product.current_price);
+        var countPrice = makeCount(product.price) - currentPrice + "TK BDT";
         dispatch({
             type: "DECREASE_QUANTITY",
-            payload: { id }
+            payload: {
+                product_id: product.product_id,
+                price: countPrice,
+                quantity
+            }
+        });
+    };
+    const removeCart = product => {
+        dispatch({
+            type: "REMOVE_CART",
+            payload: {
+                id: product.product_id
+            }
         });
     };
 
@@ -67,7 +89,7 @@ const Cart = () => {
                                 <button
                                     onClick={e => {
                                         e.preventDefault();
-                                        decreaseQuantity(product.product_id);
+                                        decreaseQuantity(product);
                                     }}
                                 >
                                     -
@@ -81,7 +103,11 @@ const Cart = () => {
                                 >
                                     <i className="bx bx-show"></i>
                                 </button>
-                                <button>
+                                <button
+                                    onClick={() => {
+                                        removeCart(product);
+                                    }}
+                                >
                                     <i className="bx bxs-trash"></i>
                                 </button>
                             </div>

@@ -13,28 +13,34 @@ const cartReducer = (state, action) => {
                 if (item.product_id === product_id) {
                     item.quantity = quantity;
                     item.price = price;
-                    localStorage.setItem("cartList", JSON.stringify(state.cart));
-                    return { ...state, cart: [...state.cart] };
-                }
-            });
-        case "DECREASE_QUANTITY":
-            const id = action.payload.id;
-            state.cart.filter(item => {
-                if (item.product_id === id) {
-                    item.quantity -= 1;
                     localStorage.setItem(
                         "cartList",
                         JSON.stringify(state.cart)
                     );
+                    return { ...state, cart: [...state.cart] };
+                }
+            });
+        case "DECREASE_QUANTITY":
+            state.cart.filter(item => {
+                if (item.product_id === action.payload.product_id) {
+                    item.quantity = action.payload.quantity;
+                    item.price = action.payload.price;
+                    localStorage.setItem(
+                        "cartList",
+                        JSON.stringify(state.cart)
+                    );
+                    return { ...state, cart: [...state.cart] };
                 }
             });
 
         case "REMOVE_CART":
+            const filter = state.cart.filter(
+                item => item.product_id !== action.payload.id
+            );
+            localStorage.setItem("cartList", JSON.stringify(filter));
             return {
                 ...state,
-                cart: state.cart.filter(
-                    item => item.product_id !== action.payload.cart_id
-                )
+                cart: filter
             };
         default:
             throw new Error();

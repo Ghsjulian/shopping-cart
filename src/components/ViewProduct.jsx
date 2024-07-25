@@ -15,7 +15,8 @@ const ViewProduct = () => {
     const [products, setProducts] = useState(null);
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    const [quantity, setQuantitiy] = useState(1);
+    var [quantity, setQuantitiy] = useState(1);
+    var [currentPrice, setCurrentPrice] = useState(null);
 
     const fetchProduct = async () => {
         try {
@@ -35,12 +36,23 @@ const ViewProduct = () => {
             console.log(error);
         }
     };
+    const makeCount = str => {
+        const position = str.trim().search("TK BDT");
+        var newStr = "";
+        for (let i = 0; i < position; i++) {
+            newStr += str[i];
+        }
+        return parseInt(newStr);
+    };
+    
+    const increaseQuantity = () => {};
     useEffect(() => {
         fetchProduct();
         if (isLoading) {
             return;
         }
-    }, [id,cart]);
+        setCurrentPrice(products.product_desc.price);
+    }, [id, cart]);
     return (
         <>
             {products && (
@@ -56,6 +68,7 @@ const ViewProduct = () => {
                             alt="Product Image"
                         />
                         <h2>{products.product_title}</h2>
+
                         <h4>
                             Products Price :{" "}
                             <span>{products.product_desc.price}</span>
@@ -92,7 +105,12 @@ const ViewProduct = () => {
                                 <div className="flex-btn btn-flex">
                                     <button
                                         onClick={() => {
-                                            setQuantitiy(quantity + 1);
+                                            if (quantity == 5) {
+                                                return;
+                                            } else {
+                                                setQuantitiy(quantity + 1);
+                                                increaseQuantity();
+                                            }
                                         }}
                                     >
                                         +

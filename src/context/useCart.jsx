@@ -36,6 +36,7 @@ const CartProvider = ({ children }) => {
             product_id: products._id,
             product_img: products.product_img,
             product_title: products.product_title,
+            current_price: products.product_desc.price,
             price: products.product_desc.price,
             quantity
         };
