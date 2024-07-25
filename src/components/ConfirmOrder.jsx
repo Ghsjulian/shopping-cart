@@ -15,7 +15,8 @@ const ConfirmOrder = () => {
         user_phone: "",
         user_address: "",
         payment_type: "",
-        user_info: getInfo()
+        userId: getInfo().userId,
+        token: getInfo().token,
     });
     const handleChange = event => {
         setAddress({ ...address, [event.target.name]: event.target.value });
@@ -41,8 +42,6 @@ const ConfirmOrder = () => {
         console.clear();
     };
     const sendToServer = async address => {
-        console.log(address);
-        /*
         try {
             btnRef.current.textContent = "Please Wait...";
             const response = await fetch(apiUrl + "/confirm-order", {
@@ -53,24 +52,15 @@ const ConfirmOrder = () => {
                 body: JSON.stringify(address)
             });
             const responseData = await response.json();
-            btnRef.current.textContent = "Login";
+            btnRef.current.textContent = "Confirm Order";
             if (responseData.type) {
-                const info = JSON.stringify(responseData.data);
-                setCookie("e-comUser", info);
                 showMessage(responseData.type, responseData.success);
-                // When We Will Admin Access This Code Will Be Executed
-                if (responseData.user_type === "Admin") {
-                    navigate("/admin/dashboard");
-                } else {
-                    navigate("/");
-                }
             } else {
                 showMessage(responseData.type, responseData.error);
             }
         } catch (error) {
             showMessage(false, "Server Error !");
         }
-        */
     };
     const submitOrder = () => {
         if (
