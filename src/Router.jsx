@@ -1,3 +1,4 @@
+import Ordered from "./components/Ordered";
 import Layouts from "./layouts/Layouts";
 import Protect from "./Protection/Protect";
 import PrivatePath from "./Protection/PrivatePath";
@@ -93,6 +94,16 @@ const MyRoutes = [
             <PrivatePath>
                 <Layouts>
                     <ConfirmOrder />
+                </Layouts>
+            </PrivatePath>
+        )
+    },
+    {
+        path: "/orders",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <Ordered />
                 </Layouts>
             </PrivatePath>
         )
