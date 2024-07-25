@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
+import {getInfo} from "../Cookies"
 
 const Cart = () => {
     document.title = "Your Cart - See Your Cart List | Shopping Cart";
@@ -9,6 +10,9 @@ const Cart = () => {
     const navigate = useNavigate();
     const priceRef = useRef(null);
     const [totalPrice, setTotalPrice] = useState(0);
+    const createOrder = () => {
+        navigate(`/confirm-order/${getInfo().userId}`);
+    };
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
@@ -143,7 +147,9 @@ const Cart = () => {
                 <h4>
                     Total Price : <span ref={priceRef}></span>
                 </h4>
-                <button id="order">Place Order</button>
+                <button id="order" onClick={createOrder}>
+                    Place Order
+                </button>
             </div>
         </section>
     );

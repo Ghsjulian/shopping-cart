@@ -88,7 +88,7 @@ const MyRoutes = [
         )
     },
     {
-        path: "/confirm-order",
+        path: "/confirm-order/:userID",
         element: (
             <PrivatePath>
                 <Layouts>

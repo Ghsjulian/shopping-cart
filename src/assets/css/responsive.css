@@ -9,6 +9,9 @@
         width: 75%;
         animation: left-animation 0.2s linear;
     }
+    #mobile-cart {
+        display: block;
+    }
     .header .search-container {
         display: flex;
         align-items: center;

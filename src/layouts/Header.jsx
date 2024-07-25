@@ -162,7 +162,7 @@ const Header = () => {
                                         Notifications
                                     </NavLink>
                                 </li>
-                                <li>
+                                <li id="mobile-cart">
                                     <NavLink
                                         onClick={closeHeader}
                                         to="/cart"
