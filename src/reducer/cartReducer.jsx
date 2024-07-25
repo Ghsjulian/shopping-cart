@@ -8,14 +8,12 @@ const cartReducer = (state, action) => {
             //localStorage.setItem("cartList", JSON.stringify(state.cart));
             return { ...state, cart: [...state.cart, product] };
         case "SET_QUANTITY":
-            const { product_id } = action.payload;
+            const { product_id, price, quantity } = action.payload;
             const newCart = state.cart.filter(item => {
                 if (item.product_id === product_id) {
-                    item.quantity += 1;
-                    localStorage.setItem(
-                        "cartList",
-                        JSON.stringify(state.cart)
-                    );
+                    item.quantity = quantity;
+                    item.price = price;
+                    localStorage.setItem("cartList", JSON.stringify(state.cart));
                     return { ...state, cart: [...state.cart] };
                 }
             });

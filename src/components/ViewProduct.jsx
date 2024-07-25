@@ -40,7 +40,7 @@ const ViewProduct = () => {
         if (isLoading) {
             return;
         }
-    }, [id]);
+    }, [id,cart]);
     return (
         <>
             {products && (

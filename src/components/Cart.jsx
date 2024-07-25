@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
 
 const Cart = () => {
     document.title = "Your Cart - See Your Cart List | Shopping Cart";
     const { cart, dispatch } = useCart();
-  const navigate  = useNavigate()
-  const viewProduct = (id)=>{
-      navigate(`/view-product/${id}`)
-  }
-    const handleQuantity = id => {
+    const navigate = useNavigate();
+    const viewProduct = id => {
+        navigate(`/view-product/${id}`);
+    };
+    const makeCount = str => {
+        const position = str.trim().search("TK BDT");
+        var newStr = "";
+        for (let i = 0; i < position; i++) {
+            newStr += str[i];
+        }
+        return parseInt(newStr);
+    };
+    const handleQuantity = product => {
+        const quantity = product.quantity + 1;
+        var countPrice = makeCount(product.price) * parseInt(quantity);
         dispatch({
             type: "SET_QUANTITY",
-            payload: { product_id: id }
+            payload: {
+                product_id: product.product_id,
+                price: countPrice,
+                quantity
+            }
         });
     };
     const decreaseQuantity = id => {
@@ -22,6 +36,7 @@ const Cart = () => {
             payload: { id }
         });
     };
+
     return (
         <section data-aos="zoom-in" id="view" className="page">
             {/* <Loader text={{ msg: "Loading..." }} />*/}
@@ -44,7 +59,7 @@ const Cart = () => {
                                 <button
                                     onClick={e => {
                                         e.preventDefault();
-                                        handleQuantity(product.product_id);
+                                        handleQuantity(product);
                                     }}
                                 >
                                     +
@@ -59,8 +74,12 @@ const Cart = () => {
                                 </button>
                             </div>
                             <div id="action-btn">
-                                <button onClick={()=>viewProduct(product.product_id)}>
-                                        <i className="bx bx-show"></i>
+                                <button
+                                    onClick={() =>
+                                        viewProduct(product.product_id)
+                                    }
+                                >
+                                    <i className="bx bx-show"></i>
                                 </button>
                                 <button>
                                     <i className="bx bxs-trash"></i>
