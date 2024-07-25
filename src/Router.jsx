@@ -15,6 +15,7 @@ import Profile from "./components/Profile";
 import ViewProduct from "./components/ViewProduct";
 import Cart from "./components/Cart";
 import SearchView from "./components/SearchView";
+import ConfirmOrder from "./components/ConfirmOrder";
 /* Admin Components Here */
 import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
@@ -82,6 +83,16 @@ const MyRoutes = [
             <PrivatePath>
                 <Layouts>
                     <Cart />
+                </Layouts>
+            </PrivatePath>
+        )
+    },
+    {
+        path: "/confirm-order",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <ConfirmOrder />
                 </Layouts>
             </PrivatePath>
         )

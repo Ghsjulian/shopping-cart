@@ -26,11 +26,22 @@ const CartProvider = ({ children }) => {
         }
     };
 
-    const addToCart = async (products,currentPrice, quantity) => {
-        // if (!getInfo().userId) {
-        //             navigate("/login");
-        //         }
-        const cartList = localStorage.getItem("cart");
+    const addToCart = async (products, currentPrice, quantity) => {
+        const data = {
+            user: getInfo(),
+            product_id: products._id,
+            product_img: products.product_img,
+            product_title: products.product_title,
+            current_price: currentPrice,
+            price: products.product_desc.price,
+            quantity
+        };
+ dispatch({
+            type: "ADD_TO_CART",
+            payload: { product: data }
+        });
+    };
+    const addToFavourite = async (products, currentPrice, quantity) => {
         const data = {
             user: getInfo(),
             product_id: products._id,
@@ -44,36 +55,9 @@ const CartProvider = ({ children }) => {
             type: "ADD_TO_CART",
             payload: { product: data }
         });
-        localStorage.setItem("cartList", JSON.stringify(state.cart));
-
-        // alert("Cart Added");
-
-        /*
-        const response = await fetch(apiUrl + "/products/add-cart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-        const responseData = await response.json();
-        if (responseData.code == 200) {
-            alert("Cart Added!");
-        } else {
-            alert("This Product Already In Your Cart List");
-        }
-        */
     };
-    const isCart = (cart, id) => {
-        var res;
-        cart.filter(item => {
-            if (item.product_id === id) {
-                res = true;
-            } else {
-                res = false;
-            }
-        });
-        return res;
+    const isCart = id => {
+        return getCart().filter(item => item.product_id === id);
     };
     return (
         <CartContext.Provider

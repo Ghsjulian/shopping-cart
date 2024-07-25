@@ -60,7 +60,8 @@ const ViewProduct = () => {
         if (isLoading) {
             return;
         }
-    }, [id]);
+        window.scrollTo({ top: 0, behavior: "smooth" }), [];
+    }, [id, cart]);
     return (
         <>
             {products && (
@@ -144,31 +145,28 @@ const ViewProduct = () => {
                                     </button>
                                 </div>
                                 <div className="flex-btn">
-                                    {isCart(cart, products._id) ? (
-                                        <a id="cart" href="#">
-                                            <i className="bx bx-cart-check"></i>
-                                            <span>Cart Added</span>
-                                        </a>
-                                    ) : (
-                                        <a
-                                            onClick={() =>
-                                                addToCart(products, currentPrice, quantity)
-                                            }
-                                            id="cart"
-                                            href="#"
-                                        >
-                                            <i className="bx bx-cart-add"></i>
-                                            <span>Add Cart</span>
-                                        </a>
-                                    )}
+                                    <a
+                                        onClick={() => {
+                                            addToCart(
+                                                products,
+                                                currentPrice?currentPrice:products.product_desc.price,
+                                                quantity?quantity:1
+                                            );
+                                        }}
+                                        id="cart"
+                                        href="#"
+                                    >
+                                        <i className="bx bx-cart-add"></i>
+                                        <span>Add Cart</span>
+                                    </a>
                                     <a id="fav" href="#">
                                         <i className="bx bx-heart"></i>
                                         <span>Add Favorites</span>
                                     </a>
-                                    <a id="call" href="#">
+                                    <NavLink id="call" to="/contact">
                                         <i className="bx bx-phone"></i>
                                         <span>Contact Now</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>

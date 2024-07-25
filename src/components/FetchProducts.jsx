@@ -59,7 +59,7 @@ const FetchProducts = ({ category }) => {
                                         <span>View Product</span>
                                     </NavLink>
                                     <NavLink
-                                        onClick={() => addToCart(product, 1)}
+                                        onClick={() => addToCart(product,product.product_desc.price, 1)}
                                         to="#"
                                     >
                                         <i className="bx bxs-cart-add"></i>

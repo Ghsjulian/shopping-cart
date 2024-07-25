@@ -13,7 +13,7 @@ const Cart = () => {
         navigate(`/view-product/${id}`);
     };
     const makeCount = str => {
-        const position = str.trim().search("TK BDT");
+        const position = str.search("TK BDT");
         var newStr = "";
         for (let i = 0; i < position; i++) {
             newStr += str[i];

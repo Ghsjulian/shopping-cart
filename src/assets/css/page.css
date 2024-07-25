@@ -157,6 +157,17 @@ input:focus {
     text-decoration: none;
     color: #0026d4;
 }
+.signup-form select {
+    outline: none;
+    border-radius: 10px;
+    border: 1.5px solid #007fbd;
+    color: #007fbd;
+    font-weight: 600;
+    padding: 0.6rem 0.3rem;
+    margin: 0.5rem auto;
+    background: transparent;
+}
+
 .signup-form .submit {
     outline: none;
     border: none;
