@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
@@ -7,6 +7,8 @@ const Cart = () => {
     document.title = "Your Cart - See Your Cart List | Shopping Cart";
     const { cart, dispatch } = useCart();
     const navigate = useNavigate();
+    const priceRef = useRef(null);
+    const [totalPrice, setTotalPrice] = useState(0);
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
@@ -17,6 +19,18 @@ const Cart = () => {
             newStr += str[i];
         }
         return parseInt(newStr);
+    };
+    const setTotal = () => {
+        const localProduct = JSON.parse(localStorage.getItem("cartList"));
+        var prices = [];
+        var netprice = 0;
+        localProduct.forEach(item => {
+            prices.push(makeCount(item.price));
+        });
+        for (let index in prices) {
+            netprice += prices[index];
+        }
+        priceRef.current.textContent = netprice + "TK BDT";
     };
     const handleQuantity = product => {
         const quantity = product.quantity + 1;
@@ -33,6 +47,7 @@ const Cart = () => {
                 quantity
             }
         });
+        //  setTotal();
     };
     const decreaseQuantity = product => {
         var quantity = product.quantity - 1;
@@ -58,6 +73,12 @@ const Cart = () => {
             }
         });
     };
+    useEffect(() => {
+        if (cart) {
+            setTotal();
+        }
+        return;
+    }, [cart]);
 
     return (
         <section data-aos="zoom-in" id="view" className="page">
@@ -72,7 +93,10 @@ const Cart = () => {
                             <img src={product.product_img} />
                             <div className="price-col">
                                 <span>{product.product_title}</span>
-                                <span>Price : {product.price}</span>
+                                <span>
+                                    Price :{" "}
+                                    <span id="price">{product.price}</span>
+                                </span>
                                 <span>Your Quantity : {product.quantity}</span>
                             </div>
                         </div>
@@ -117,7 +141,7 @@ const Cart = () => {
             })}
             <div className="total">
                 <h4>
-                    Total Price : <span>570 TK BDT</span>
+                    Total Price : <span ref={priceRef}></span>
                 </h4>
                 <button id="order">Place Order</button>
             </div>

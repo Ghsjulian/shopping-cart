@@ -37,22 +37,30 @@ const ViewProduct = () => {
         }
     };
     const makeCount = str => {
-        const position = str.trim().search("TK BDT");
+        const position = str.search("TK BDT");
         var newStr = "";
         for (let i = 0; i < position; i++) {
             newStr += str[i];
         }
         return parseInt(newStr);
     };
-    
-    const increaseQuantity = () => {};
+
+    const increaseQuantity = () => {
+        let price = makeCount(currentPrice);
+        products.product_desc.price =
+            makeCount(products.product_desc.price) + price + "TK BDT";
+    };
+    const decreaseQuantity = () => {
+        let price = makeCount(currentPrice);
+        products.product_desc.price =
+            makeCount(products.product_desc.price) - price + "TK BDT";
+    };
     useEffect(() => {
         fetchProduct();
         if (isLoading) {
             return;
         }
-        setCurrentPrice(products.product_desc.price);
-    }, [id, cart]);
+    }, [id]);
     return (
         <>
             {products && (
@@ -105,6 +113,12 @@ const ViewProduct = () => {
                                 <div className="flex-btn btn-flex">
                                     <button
                                         onClick={() => {
+                                            if (!currentPrice) {
+                                                setCurrentPrice(
+                                                    products.product_desc.price
+                                                );
+                                                increaseQuantity();
+                                            }
                                             if (quantity == 5) {
                                                 return;
                                             } else {
@@ -122,6 +136,7 @@ const ViewProduct = () => {
                                                 return;
                                             } else {
                                                 setQuantitiy(quantity - 1);
+                                                decreaseQuantity();
                                             }
                                         }}
                                     >
@@ -137,7 +152,7 @@ const ViewProduct = () => {
                                     ) : (
                                         <a
                                             onClick={() =>
-                                                addToCart(products, quantity)
+                                                addToCart(products, currentPrice, quantity)
                                             }
                                             id="cart"
                                             href="#"

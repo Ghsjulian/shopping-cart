@@ -26,7 +26,7 @@ const CartProvider = ({ children }) => {
         }
     };
 
-    const addToCart = async (products, quantity) => {
+    const addToCart = async (products,currentPrice, quantity) => {
         // if (!getInfo().userId) {
         //             navigate("/login");
         //         }
@@ -36,7 +36,7 @@ const CartProvider = ({ children }) => {
             product_id: products._id,
             product_img: products.product_img,
             product_title: products.product_title,
-            current_price: products.product_desc.price,
+            current_price: currentPrice,
             price: products.product_desc.price,
             quantity
         };
