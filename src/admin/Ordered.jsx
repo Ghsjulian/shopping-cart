@@ -25,7 +25,6 @@ const AllOrders = () => {
                 setData(response.data);
             } else {
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -54,7 +53,7 @@ const AllOrders = () => {
                 data.map((user, index) => {
                     return (
                         <>
-                            <div className="cart" key={index}>
+                            <div className="cart" key={index+2}>
                                 <div
                                     id="cart-col"
                                     className="cart-col order-info"
@@ -65,12 +64,19 @@ const AllOrders = () => {
                                         <h3>Index ID : {index + 1}</h3>
 
                                         <span>
-                                            User Name : {user.user_name}
+                                            Customer Name : {user.user_name}
                                         </span>
                                         <span>
-                                            User Email : {user.user_email}
+                                            Customer Email : {user.user_email}
                                         </span>
-                                        <span>User ID : {user.userId}</span>
+                                        <span>
+                                            Customer Phone : {user.user_phone}
+                                        </span>
+                                        <span>
+                                            Customer Address :{" "}
+                                            {user.user_address}
+                                        </span>
+                                        <span>Customer ID : {user.userId}</span>
                                         <span>Order ID : {user._id}</span>
                                         <span>
                                             Total Products :{" "}

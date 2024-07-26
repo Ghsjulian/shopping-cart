@@ -24,6 +24,7 @@ const ViewOrder = () => {
             const response = await axios.get(
                 apiUrl + "/get-order/" + getInfo().userId
             );
+            console.log(response);
             if (response.data) {
                 setProducts(response.data.products);
                 setData(response.data);
