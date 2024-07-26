@@ -431,6 +431,13 @@ input:focus {
     padding: 0.5rem 0.6rem;
     margin: 0.3rem auto;
 }
+.total #msg {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 186, 50, 0.196);
+    border-radius: 12px;
+    text-align: center;
+}
 .cart button {
     cursor: pointer;
 }

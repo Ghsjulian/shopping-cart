@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Loader from "./Loader";
 import axios from "axios";
 import { useCart } from "../context/useCart";
-import { getInfo } from "../Cookies";
+import { getInfo,isAdmin } from "../Cookies";
 
-const Ordered = () => {
+const AllOrders = () => {
     document.title = "Your Order List - See Your Order List | Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const { cart, getCart, dispatch } = useCart();
@@ -18,14 +17,11 @@ const Ordered = () => {
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
-    const fetchOrder = async () => {
+    const fetchAdminNoti = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(
-                apiUrl + "/get-order/" + getInfo().userId
-            );
+            const response = await axios.get(apiUrl + "/admin/orders");
             if (response.data) {
-                setProducts(response.data.products);
                 setData(response.data);
             } else {
                 setIsLoading(false);
@@ -36,7 +32,12 @@ const Ordered = () => {
         }
     };
     useEffect(() => {
-        fetchOrder();
+        if (isAdmin()) {
+            fetchAdminNoti();
+            if (isLoading) {
+                return;
+            }
+        }
         if (isLoading) {
             return;
         }
@@ -117,9 +118,7 @@ const Ordered = () => {
             )}
 
             {data && (
-                <div className="total"
-                style={{flexDirection : "column"}}
-                >
+                <div className="total" style={{ flexDirection: "column" }}>
                     <h4
                         style={{
                             fontSize: "18px",
@@ -144,4 +143,4 @@ const Ordered = () => {
     );
 };
 
-export default Ordered;
+export default AllOrders;

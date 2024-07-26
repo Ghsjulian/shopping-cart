@@ -23,6 +23,7 @@ import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
 import AllProducts from "./admin/AllProducts";
 import EditProduct from "./admin/EditProduct";
+import AdminNotifications from "./admin/Notifications";
 /* Admin Components Here */
 
 const MyRoutes = [
@@ -182,6 +183,16 @@ const MyRoutes = [
             <AdminProdtection>
                 <Layouts>
                     <EditProduct />
+                </Layouts>
+            </AdminProdtection>
+        )
+    },
+    {
+        path: "/admin/notifications",
+        element: (
+            <AdminProdtection>
+                <Layouts>
+                    <AdminNotifications />
                 </Layouts>
             </AdminProdtection>
         )

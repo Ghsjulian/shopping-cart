@@ -13,6 +13,8 @@ const Header = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState(null);
+    const [noti, setNoti] = useState(null);
+    const [adminNoti, setAdminNoti] = useState(null);
     const flashRef = useRef(null);
     const flashMessage = useRef(null);
     const headerRef = useRef(null);
@@ -66,6 +68,21 @@ const Header = () => {
             );
             if (response.data) {
                 setProducts(response.data.products);
+                setNoti(response.data.message);
+            } else {
+                setIsLoading(false);
+                console.log("No Products Found");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const fetchAdminNoti = async () => {
+        try {
+            setIsLoading(true);
+            const response = await axios.get(apiUrl + "/admin/orders");
+            if (response.data) {
+                setAdminNoti(response.data);
             } else {
                 setIsLoading(false);
                 console.log("No Products Found");
@@ -76,6 +93,12 @@ const Header = () => {
     };
     useEffect(() => {
         fetchOrder();
+        if (isAdmin()) {
+            fetchAdminNoti();
+            if (isLoading) {
+                return;
+            }
+        }
         if (isLoading) {
             return;
         }
@@ -121,13 +144,51 @@ const Header = () => {
                                 <li>
                                     <NavLink
                                         onClick={closeHeader}
+                                        to="/admin/dashboard"
+                                        className={
+                                            path == "/admin/dashboard"
+                                                ? "active"
+                                                : ""
+                                        }
+                                    >
+                                        <i className="bx bx-grid-alt"></i>
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        onClick={closeHeader}
                                         to="/profile"
                                         className={
                                             path == "/profile" ? "active" : ""
                                         }
                                     >
-                                        <i className="bx bx-user-circle"></i>
+                                        <i className="bx bx-shield"></i>
                                         Profile
+                                    </NavLink>
+                                </li>
+                                <li id="mobile-cart">
+                                    <NavLink
+                                        onClick={closeHeader}
+                                        to="/admin/notifications"
+                                        className={
+                                            path == "/admin/notifications"
+                                                ? "active"
+                                                : ""
+                                        }
+                                    >
+                                        <i className="bx bx-bell"></i>
+                                        Notifications
+                                        {adminNoti && (
+                                            <span
+                                                style={{
+                                                    backgroundColor: "#0bc900"
+                                                }}
+                                                id="noti"
+                                            >
+                                                {adminNoti.length}
+                                            </span>
+                                        )}
                                     </NavLink>
                                 </li>
                                 <li>
@@ -140,7 +201,7 @@ const Header = () => {
                                                 : ""
                                         }
                                     >
-                                        <i className="bx bx-user-circle"></i>
+                                        <i className="bx bx-plus-circle"></i>
                                         Add Product
                                     </NavLink>
                                 </li>
@@ -154,7 +215,7 @@ const Header = () => {
                                                 : ""
                                         }
                                     >
-                                        <i className="bx bx-user-circle"></i>
+                                        <i className="bx bx-task"></i>
                                         All Products
                                     </NavLink>
                                 </li>
@@ -175,7 +236,7 @@ const Header = () => {
                                         Profile
                                     </NavLink>
                                 </li>
-                                <li>
+                                <li id="mobile-cart">
                                     <NavLink
                                         onClick={closeHeader}
                                         to="/notifications"
@@ -187,6 +248,16 @@ const Header = () => {
                                     >
                                         <i className="bx bx-bell"></i>
                                         Notifications
+                                        {noti && (
+                                            <span
+                                                style={{
+                                                    backgroundColor: "#0bc900"
+                                                }}
+                                                id="noti"
+                                            >
+                                                1
+                                            </span>
+                                        )}
                                     </NavLink>
                                 </li>
                                 <li id="mobile-cart">
@@ -214,7 +285,12 @@ const Header = () => {
                                         <i className="bx bx-shopping-bag"></i>
                                         Orders
                                         {products && products.length > 0 && (
-                                            <span id="noti">
+                                            <span
+                                                style={{
+                                                    backgroundColor: "#bb00d2"
+                                                }}
+                                                id="noti"
+                                            >
                                                 {products.length}
                                             </span>
                                         )}
@@ -242,7 +318,7 @@ const Header = () => {
                                     path == "/latest-products" ? "active" : ""
                                 }
                             >
-                                <i className="bx bxs-shopping-bags"></i>Latest
+                                <i className="bx bx-customize"></i>Latest
                                 Products
                             </NavLink>
                         </li>
@@ -351,17 +427,52 @@ const Header = () => {
                     >
                         <i className="bx bx-search-alt-2"></i>
                     </NavLink>
-                    {getInfo().token && (
+                    {!isAdmin() && getInfo().token && (
                         <>
                             <NavLink to="/notifications">
                                 <i className="bx bx-bell"></i>
-                            </NavLink>
-                            <NavLink to="/cart">
-                                <i className="bx bx-cart"></i>
-                                {cart.length > 0 && (
-                                    <span id="noti">{cart.length}</span>
+                                {noti && (
+                                    <span
+                                        style={{
+                                            backgroundColor: "#0bc900"
+                                        }}
+                                        id="noti"
+                                    >
+                                        1
+                                    </span>
                                 )}
                             </NavLink>
+                            {!isAdmin() && getInfo().token && (
+                                <NavLink to="/cart">
+                                    <i className="bx bx-cart"></i>
+                                    {cart.length > 0 && (
+                                        <span id="noti">{cart.length}</span>
+                                    )}
+                                </NavLink>
+                            )}
+                            {isAdmin() && getInfo().token && (
+                                <>
+                                    <NavLink to="/admin/notifications">
+                                        <i className="bx bx-bell"></i>
+                                        {adminNoti && (
+                                            <span
+                                                style={{
+                                                    backgroundColor: "#0bc900"
+                                                }}
+                                                id="noti"
+                                            >
+                                                {adminNoti.length}
+                                            </span>
+                                        )}
+                                    </NavLink>
+                                    <NavLink to="/about">
+                                        <img
+                                            src="/ss_demo/android-chrome-512x512.png"
+                                            alt="Admin Avtar"
+                                        />
+                                    </NavLink>
+                                </>
+                            )}
                         </>
                     )}
                 </div>

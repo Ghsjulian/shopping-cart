@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Loader from "./Loader";
 import axios from "axios";
 import { useCart } from "../context/useCart";
-import { getInfo } from "../Cookies";
+import { getInfo, isAdmin } from "../Cookies";
 
-const Notifications = () => {
+const AdminNotifications = () => {
     document.title = "Notifications - User Push Messages | Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const { cart, getCart, dispatch } = useCart();
@@ -17,12 +16,10 @@ const Notifications = () => {
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
-    const fetchOrder = async () => {
+    const fetchAdminNoti = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(
-                apiUrl + "/get-order/" + getInfo().userId
-            );
+            const response = await axios.get(apiUrl + "/admin/orders");
             if (response.data) {
                 setData(response.data);
             } else {
@@ -34,7 +31,12 @@ const Notifications = () => {
         }
     };
     useEffect(() => {
-        fetchOrder();
+        if (isAdmin()) {
+            fetchAdminNoti();
+            if (isLoading) {
+                return;
+            }
+        }
         if (isLoading) {
             return;
         }
@@ -72,40 +74,47 @@ const Notifications = () => {
                     </h4>
                 </div>
             )}
-            {data && (
-                <>
-                    <h2>Your Notification</h2>
-                    <div className="total">
-                        <NavLink
-                            id="msg"
-                            to="/orders"
-                            style={{
-                                display: "flex",
-                                textDecoration: "none",
-                                textAlign: "justify",
-                                margin: ".5rem auto",
-                                padding: ".5rem .6rem",
-                                color: "#3e3e3e",
-                                fontWeight: "700"
-                            }}
-                        >
-                            <i
-                                style={{
-                                    fontSize: "30px",
-                                    textAlign: "justify",
-                                    margin: "0 .3rem",
-                                    color: "#13aa00",
-                                    fontWeight: "300"
-                                }}
-                                className="ri ri-checkbox-circle-line"
-                            ></i>
-                            {data.message}
-                        </NavLink>
-                    </div>
-                </>
-            )}
+            {
+                data && <h2>Admin Notifications</h2>
+            }
+            {data &&
+                data.map((user, index) => {
+                    return (
+                        <>
+                            <div className="total" key={index}>
+                                <NavLink
+                                    id="msg"
+                                    to="/admin/orders"
+                                    style={{
+                                        display: "flex",
+                                        textDecoration: "none",
+                                        textAlign: "justify",
+                                        margin: ".5rem auto",
+                                        padding: ".5rem .6rem",
+                                        color: "#3e3e3e",
+                                        fontWeight: "700"
+                                    }}
+                                >
+                                    <i
+                                        style={{
+                                            fontSize: "30px",
+                                            textAlign: "justify",
+                                            margin: "0 .3rem",
+                                            color: "#13aa00",
+                                            fontWeight: "300"
+                                        }}
+                                        className="ri ri-checkbox-circle-line"
+                                    ></i>
+                                    {user.user_name} Ordered{" "}
+                                    {user.products.length} Product, Accept The
+                                    Order Or Reject It.
+                                </NavLink>
+                            </div>
+                        </>
+                    );
+                })}
         </section>
     );
 };
 
-export default Notifications;
+export default AdminNotifications;
