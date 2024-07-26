@@ -5,8 +5,13 @@ import { getInfo, isAdmin, deleteCookie } from "../Cookies";
 import { useCart } from "../context/useCart";
 
 const Header = () => {
-    const { cart } = useCart();
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const { cart, getCart, dispatch } = useCart();
     const navigate = useNavigate();
+    const priceRef = useRef(null);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [products, setProducts] = useState(null);
     const flashRef = useRef(null);
     const flashMessage = useRef(null);
     const headerRef = useRef(null);
@@ -22,9 +27,6 @@ const Header = () => {
     };
     const location = useLocation();
     const [path, setPath] = useState("");
-    useEffect(() => {
-        setPath(location.pathname);
-    }, [location]);
 
     const logout = async () => {
         closeHeader();
@@ -54,6 +56,30 @@ const Header = () => {
             flashMessage.current.textContent = error;
         }
     };
+
+    const fetchOrder = async () => {
+        try {
+            setIsLoading(true);
+            const response = await axios.get(
+                apiUrl + "/get-order/" + getInfo().userId
+            );
+            if (response.data) {
+                setProducts(response.data.products);
+            } else {
+                setIsLoading(false);
+                console.log("No Products Found");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        fetchOrder();
+        if (isLoading) {
+            return;
+        }
+        setPath(location.pathname);
+    }, [location]);
 
     return (
         <>
@@ -186,6 +212,11 @@ const Header = () => {
                                     >
                                         <i className="bx bx-shopping-bag"></i>
                                         Orders
+                                        {products && products.length > 0 && (
+                                            <span id="noti">
+                                                {products.length}
+                                            </span>
+                                        )}
                                     </NavLink>
                                 </li>
                             </>
@@ -202,7 +233,7 @@ const Header = () => {
                                 Categories
                             </NavLink>
                         </li>
-<li>
+                        <li>
                             <NavLink
                                 onClick={closeHeader}
                                 to="/latest-products"
@@ -319,17 +350,19 @@ const Header = () => {
                     >
                         <i className="bx bx-search-alt-2"></i>
                     </NavLink>
-                     {getInfo().token && (<>
-                    <NavLink to="/notification">
-                        <i className="bx bx-bell"></i>
-                    </NavLink>
-                    <NavLink to="/cart">
-                        <i className="bx bx-cart"></i>
-                        {cart.length > 0 && (
-                            <span id="noti">{cart.length}</span>
-                        )}
-                    </NavLink>
-                   </> )}
+                    {getInfo().token && (
+                        <>
+                            <NavLink to="/notification">
+                                <i className="bx bx-bell"></i>
+                            </NavLink>
+                            <NavLink to="/cart">
+                                <i className="bx bx-cart"></i>
+                                {cart.length > 0 && (
+                                    <span id="noti">{cart.length}</span>
+                                )}
+                            </NavLink>
+                        </>
+                    )}
                 </div>
             </nav>
             <div ref={flashRef}>

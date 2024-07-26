@@ -89,7 +89,7 @@ const MyRoutes = [
         )
     },
     {
-        path: "/confirm-order/:userID",
+        path: "/confirm-order/:userid/:price",
         element: (
             <PrivatePath>
                 <Layouts>

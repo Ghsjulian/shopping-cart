@@ -11,7 +11,8 @@ const Cart = () => {
     const priceRef = useRef(null);
     const [totalPrice, setTotalPrice] = useState(0);
     const createOrder = () => {
-        navigate(`/confirm-order/${getInfo().userId}`);
+        let price = priceRef.current.textContent
+        navigate(`/confirm-order/${getInfo().userId}/${price}`);
     };
     const viewProduct = id => {
         navigate(`/view-product/${id}`);

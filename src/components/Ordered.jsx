@@ -14,6 +14,7 @@ const Ordered = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState(null);
+    const [data, setData] = useState(null);
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
@@ -24,7 +25,8 @@ const Ordered = () => {
                 apiUrl + "/get-order/" + getInfo().userId
             );
             if (response.data) {
-                setProducts(response.data);
+                setProducts(response.data.products);
+                setData(response.data);
             } else {
                 setIsLoading(false);
                 console.log("No Products Found");
@@ -45,26 +47,41 @@ const Ordered = () => {
             <h2>
                 Your Order - <span>List</span>
             </h2>
-            <p>{JSON.stringify(products)}</p>
-            {/*
-            {products.map((product, index) => {
-                return (
-                    <div className="cart" key={index}>
-                        <div id="cart-col" className="cart-col">
-                            <img src={product.product_img} />
-                            <div className="price-col">
-                                <span>{product.product_title}</span>
-                                <span>
-                                    Price :
-                                    <span id="price">{product.price}</span>
-                                </span>
-                                <span>Your Quantity : {product.quantity}</span>
+            {products &&
+                products.map((product, index) => {
+                    return (
+                        <div className="cart" key={index}>
+                            <div id="cart-col" className="cart-col">
+                                <img src={product.product_img} />
+                                <div className="price-col">
+                                    <span>{product.product_title}</span>
+                                    <span>
+                                        Price :
+                                        <span id="price">
+                                            {product.price}
+                                        </span>
+                                    </span>
+                                    <span>
+                                        Your Quantity : {product.quantity}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="cart-col">
+                                <div id="action-btn">
+                                    <button
+                                        onClick={() =>
+                                            viewProduct(product.product_id)
+                                        }
+                                    >
+                                        <i className="bx bx-show"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            })}
-            {cart.length == 0 && (
+                    );
+                })}
+
+            {!products && (
                 <div
                     className="signup-form"
                     style={{
@@ -93,17 +110,19 @@ const Ordered = () => {
                     </h4>
                 </div>
             )}
-            {cart && (
+
+            {data && (
                 <div className="total">
-                    <h4>
-                        Total Price : <span ref={priceRef}></span>
+                    <h4
+                        style={{
+                            textAlign: "center",
+                            margin: ".5rem auto"
+                        }}
+                    >
+                        Total Price : <span>{data.total_price}</span>
                     </h4>
-                    <button id="order" onClick={createOrder}>
-                        Place Order
-                    </button>
                 </div>
             )}
-            */}
         </section>
     );
 };

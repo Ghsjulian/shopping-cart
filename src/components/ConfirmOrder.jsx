@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { setCookie, getInfo } from "../Cookies";
 import { useCart } from "../context/useCart";
 
 const ConfirmOrder = () => {
     document.title = "Login To Your Account | Shopping Cart";
     const { getCart } = useCart();
+    const { userid, price } = useParams();
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const messageRef = useRef(null);
@@ -17,6 +18,7 @@ const ConfirmOrder = () => {
         user_phone: "",
         user_address: "",
         payment_type: "",
+        total_price : price,
         payment_status: "paid",
         userId: getInfo().userId,
         token: getInfo().token,
@@ -85,7 +87,7 @@ const ConfirmOrder = () => {
         } else {
             address.payment_type = paymentRef.current.value;
             sendToServer(address);
-           // console.log(address);
+            // console.log(address);
         }
     };
     return (
