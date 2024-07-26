@@ -72,14 +72,31 @@ const Notifications = () => {
             </div>
             {data && (
                 <div className="total">
-                    <h4
+                    <NavLink
+                        to="/orders"
                         style={{
-                            textAlign: "center",
-                            margin: ".5rem auto"
+                            display: "flex",
+                            backgroundColor: "transparent",
+                            textDecoration: "none",
+                            textAlign: "justify",
+                            margin: ".5rem auto",
+                            padding: ".5rem .6rem",
+                            color: "#3e3e3e",
+                            fontWeight: "700"
                         }}
                     >
+                        <i
+                            style={{
+                                fontSize: "30px",
+                                textAlign: "justify",
+                                margin: "0 .3rem",
+                                color: "#13aa00",
+                                fontWeight: '300',
+                            }}
+                            className="ri ri-checkbox-circle-line"
+                        ></i>
                         {data.message}
-                    </h4>
+                    </NavLink>
                 </div>
             )}
         </section>

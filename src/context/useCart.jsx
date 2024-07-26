@@ -27,34 +27,36 @@ const CartProvider = ({ children }) => {
     };
 
     const addToCart = async (products, currentPrice, quantity) => {
-        const data = {
-            user: getInfo(),
-            product_id: products._id,
-            product_img: products.product_img,
-            product_title: products.product_title,
-            current_price: currentPrice,
-            price: products.product_desc.price,
-            quantity
+        if (getInfo().userId) {
+            const data = {
+                user: getInfo(),
+                product_id: products._id,
+                product_img: products.product_img,
+                product_title: products.product_title,
+                current_price: currentPrice,
+                price: products.product_desc.price,
+                quantity
+            };
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: { product: data }
+            });
+        }
+        const addToFavourite = async (products, currentPrice, quantity) => {
+            const data = {
+                user: getInfo(),
+                product_id: products._id,
+                product_img: products.product_img,
+                product_title: products.product_title,
+                current_price: currentPrice,
+                price: products.product_desc.price,
+                quantity
+            };
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: { product: data }
+            });
         };
- dispatch({
-            type: "ADD_TO_CART",
-            payload: { product: data }
-        });
-    };
-    const addToFavourite = async (products, currentPrice, quantity) => {
-        const data = {
-            user: getInfo(),
-            product_id: products._id,
-            product_img: products.product_img,
-            product_title: products.product_title,
-            current_price: currentPrice,
-            price: products.product_desc.price,
-            quantity
-        };
-        dispatch({
-            type: "ADD_TO_CART",
-            payload: { product: data }
-        });
     };
     const isCart = id => {
         return getCart().filter(item => item.product_id === id);

@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import ghs from "../assets/img/ghs_10.png";
 import { getInfo, isAdmin, deleteCookie } from "../Cookies";
 import { useCart } from "../context/useCart";
+import axios from "axios";
 
 const Header = () => {
     const apiUrl = import.meta.env.VITE_API_URL;

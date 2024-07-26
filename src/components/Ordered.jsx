@@ -44,41 +44,45 @@ const Ordered = () => {
 
     return (
         <section data-aos="zoom-in" id="view" className="page">
-            {products &&
-                products.map((product, index) => {
-                    return (<>
-                        <h2>
+            {
+                products &&    <h2>
                 Your Order - <span>List</span>
             </h2>
-                        <div className="cart" key={index}>
-                            <div id="cart-col" className="cart-col">
-                                <img src={product.product_img} />
-                                <div className="price-col">
-                                    <span>{product.product_title}</span>
-                                    <span>
-                                        Price :
-                                        <span id="price">
-                                            {product.price}
+            }
+            {products &&
+                products.map((product, index) => {
+                    return (
+                        <>
+                            <div className="cart" key={index}>
+                                <div id="cart-col" className="cart-col">
+                                    <img src={product.product_img} />
+                                    <div className="price-col">
+                                        <span>{product.product_title}</span>
+                                        <span>
+                                            Price :
+                                            <span id="price">
+                                                {product.price}
+                                            </span>
                                         </span>
-                                    </span>
-                                    <span>
-                                        Your Quantity : {product.quantity}
-                                    </span>
+                                        <span>
+                                            Your Quantity : {product.quantity}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="cart-col">
+                                    <div id="action-btn">
+                                        <button
+                                            onClick={() =>
+                                                viewProduct(product.product_id)
+                                            }
+                                        >
+                                            <i className="bx bx-show"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="cart-col">
-                                <div id="action-btn">
-                                    <button
-                                        onClick={() =>
-                                            viewProduct(product.product_id)
-                                        }
-                                    >
-                                        <i className="bx bx-show"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                   </> );
+                        </>
+                    );
                 })}
 
             {!products && (
@@ -86,7 +90,8 @@ const Ordered = () => {
                     className="signup-form"
                     style={{
                         width: "90%",
-                        maxWidth: "650px", boxShadow: "none"
+                        maxWidth: "650px",
+                        boxShadow: "none"
                     }}
                 >
                     <h2>
