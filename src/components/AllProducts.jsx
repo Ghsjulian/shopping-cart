@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
+import {isAdmin} from "../Cookies"
 
 
 const AllProducts = () => {
@@ -59,13 +60,25 @@ const AllProducts = () => {
                                         <i className="bx bx-show"></i>
                                         <span>View Product</span>
                                     </NavLink>
-                                    <NavLink
+                                    
+                                    {!isAdmin() && (
+                                        <NavLink
                                         onClick={() => addToCart(product,product.product_desc.price, 1)}
                                         to="#"
                                     >
                                         <i className="bx bxs-cart-add"></i>
                                         <span>Add Cart</span>
                                     </NavLink>
+                                    )}
+                                    {isAdmin() && (
+                                        <NavLink
+                                            to={`/admin/edit-product/${product._id}`}
+                                        >
+                                            <i className="bx bx-pen"></i>
+                                            <span>Edit Product</span>
+                                        </NavLink>
+                                    )}
+                                    
                                 </div>
                             </div>
                         );

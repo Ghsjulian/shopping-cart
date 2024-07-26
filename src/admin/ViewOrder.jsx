@@ -6,7 +6,8 @@ import { getInfo } from "../Cookies";
 
 const ViewOrder = () => {
     const { userId } = useParams();
-    document.title = "View Order - See Order | Shopping Cart";
+    document.title =
+        "View Ordered Products Details - See Order | Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const { cart, getCart, dispatch } = useCart();
     const navigate = useNavigate();
@@ -18,19 +19,17 @@ const ViewOrder = () => {
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
     };
+
+
     const fetchOrder = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(
-                apiUrl + "/get-order/" + getInfo().userId
-            );
-            console.log(response);
+            const response = await axios.get(apiUrl + "/get-order/" + userId);
             if (response.data) {
                 setProducts(response.data.products);
                 setData(response.data);
             } else {
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -47,7 +46,7 @@ const ViewOrder = () => {
         <section data-aos="zoom-in" id="view" className="page">
             {products && (
                 <h2>
-                    Your Order - <span>List</span>
+                    Ordered Product List - <span> {products.length}</span>
                 </h2>
             )}
             {products &&
@@ -60,13 +59,14 @@ const ViewOrder = () => {
                                     <div className="price-col">
                                         <span>{product.product_title}</span>
                                         <span>
-                                            Price :
+                                            Product Price :
                                             <span id="price">
                                                 {product.price}
                                             </span>
                                         </span>
                                         <span>
-                                            Your Quantity : {product.quantity}
+                                            Product Quantity :{" "}
+                                            {product.quantity}
                                         </span>
                                     </div>
                                 </div>

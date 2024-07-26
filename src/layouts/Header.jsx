@@ -170,16 +170,16 @@ const Header = () => {
                                 <li id="mobile-cart">
                                     <NavLink
                                         onClick={closeHeader}
-                                        to="/admin/notifications"
+                                        to="/admin/orders"
                                         className={
-                                            path == "/admin/notifications"
+                                            path == "/admin/orders"
                                                 ? "active"
                                                 : ""
                                         }
                                     >
                                         <i className="bx bx-bell"></i>
                                         Notifications
-                                        {adminNoti && (
+                                        {adminNoti && adminNoti.length > 0 && (
                                             <span
                                                 style={{
                                                     backgroundColor: "#0bc900"
@@ -450,29 +450,29 @@ const Header = () => {
                                     )}
                                 </NavLink>
                             )}
-                            {isAdmin() && (
-                                <>
-                                    <NavLink to="/admin/notifications">
-                                        <i className="bx bx-bell"></i>
-                                        {adminNoti && (
-                                            <span
-                                                style={{
-                                                    backgroundColor: "#0bc900"
-                                                }}
-                                                id="noti"
-                                            >
-                                                {adminNoti.length}
-                                            </span>
-                                        )}
-                                    </NavLink>
-                                    <NavLink to="/about">
-                                        <img
-                                            src="/ss_demo/android-chrome-512x512.png"
-                                            alt="Admin Avtar"
-                                        />
-                                    </NavLink>
-                                </>
-                            )}
+                        </>
+                    )}
+                    {isAdmin() && getInfo().token && (
+                        <>
+                            <NavLink to="/admin/orders">
+                                <i className="bx bx-bell"></i>
+                                {adminNoti &&adminNoti.length > 0 && (
+                                    <span
+                                        style={{
+                                            backgroundColor: "#0bc900"
+                                        }}
+                                        id="noti"
+                                    >
+                                        {adminNoti.length}
+                                    </span>
+                                )}
+                            </NavLink>
+                            <NavLink to="/about">
+                                <img
+                                    src="/ss_demo/android-chrome-512x512.png"
+                                    alt="Admin Avtar"
+                                />
+                            </NavLink>
                         </>
                     )}
                 </div>

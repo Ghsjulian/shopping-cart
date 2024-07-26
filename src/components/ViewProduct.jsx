@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
-import { getInfo } from "../Cookies";
+import { getInfo, isAdmin } from "../Cookies";
 import product from "../assets/products/tshirt_1.png";
 import FetchProducts from "./FetchProducts";
 import { useCart } from "../context/useCart";
@@ -30,7 +30,6 @@ const ViewProduct = () => {
             } else {
                 setIsProducts(false);
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -76,6 +75,7 @@ const ViewProduct = () => {
                             src={products.product_img}
                             alt="Product Image"
                         />
+                        {alert(isCart(products._id))}
                         <h2>{products.product_title}</h2>
 
                         <h4>
@@ -110,65 +110,84 @@ const ViewProduct = () => {
                                     </span>
                                 </li>
                             </div>
-                            <div className="flex-col">
-                                <div className="flex-btn btn-flex">
-                                    <button
-                                        onClick={() => {
-                                            if (!currentPrice) {
-                                                setCurrentPrice(
-                                                    products.product_desc.price
+                            {!isAdmin() && (
+                                <div className="flex-col">
+                                    <div className="flex-btn btn-flex">
+                                        <button
+                                            onClick={() => {
+                                                if (!currentPrice) {
+                                                    setCurrentPrice(
+                                                        products.product_desc
+                                                            .price
+                                                    );
+                                                    increaseQuantity();
+                                                }
+                                                if (quantity == 5) {
+                                                    return;
+                                                } else {
+                                                    setQuantitiy(quantity + 1);
+                                                    increaseQuantity();
+                                                }
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                        <span>Quantity : {quantity}</span>
+                                        <button
+                                            onClick={() => {
+                                                if (quantity == 1) {
+                                                    return;
+                                                } else {
+                                                    setQuantitiy(quantity - 1);
+                                                    decreaseQuantity();
+                                                }
+                                            }}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                    <div className="flex-btn">
+                                        <a
+                                            onClick={() => {
+                                                addToCart(
+                                                    products,
+                                                    currentPrice
+                                                        ? currentPrice
+                                                        : products.product_desc
+                                                              .price,
+                                                    quantity ? quantity : 1
                                                 );
-                                                increaseQuantity();
-                                            }
-                                            if (quantity == 5) {
-                                                return;
-                                            } else {
-                                                setQuantitiy(quantity + 1);
-                                                increaseQuantity();
-                                            }
-                                        }}
-                                    >
-                                        +
-                                    </button>
-                                    <span>Quantity : {quantity}</span>
-                                    <button
-                                        onClick={() => {
-                                            if (quantity == 1) {
-                                                return;
-                                            } else {
-                                                setQuantitiy(quantity - 1);
-                                                decreaseQuantity();
-                                            }
-                                        }}
-                                    >
-                                        -
-                                    </button>
+                                            }}
+                                            id="cart"
+                                            href="#"
+                                        >
+                                            <i className="bx bx-cart-add"></i>
+                                            <span>Add Cart</span>
+                                        </a>
+                                        <a id="fav" href="#">
+                                            <i className="bx bx-heart"></i>
+                                            <span>Add Favorites</span>
+                                        </a>
+                                        <NavLink id="call" to="/contact">
+                                            <i className="bx bx-phone"></i>
+                                            <span>Contact Now</span>
+                                        </NavLink>
+                                    </div>
                                 </div>
-                                <div className="flex-btn">
-                                    <a
-                                        onClick={() => {
-                                            addToCart(
-                                                products,
-                                                currentPrice?currentPrice:products.product_desc.price,
-                                                quantity?quantity:1
-                                            );
-                                        }}
-                                        id="cart"
-                                        href="#"
-                                    >
-                                        <i className="bx bx-cart-add"></i>
-                                        <span>Add Cart</span>
-                                    </a>
-                                    <a id="fav" href="#">
-                                        <i className="bx bx-heart"></i>
-                                        <span>Add Favorites</span>
-                                    </a>
-                                    <NavLink id="call" to="/contact">
-                                        <i className="bx bx-phone"></i>
-                                        <span>Contact Now</span>
-                                    </NavLink>
+                            )}
+                            {isAdmin() && (
+                                <div className="flex-col">
+                                    <div className="flex-btn">
+                                        <NavLink
+                                            id="cart"
+                                            to={`/admin/edit-product/${products._id}`}
+                                        >
+                                            <i className="ri ri-edit-line"></i>
+                                            <span>Edit Product</span>
+                                        </NavLink>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </section>
                     <section data-aos="zoom-in" className="page" id="products">

@@ -59,7 +59,11 @@ const CartProvider = ({ children }) => {
         };
     };
     const isCart = id => {
-        return getCart().filter(item => item.product_id === id);
+        const cartList = localStorage.getItem("cartList");
+        const data = JSON.parse(cartList);
+        data.map(item => {
+            return item.product_id;
+        });
     };
     return (
         <CartContext.Provider

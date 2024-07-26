@@ -23,7 +23,6 @@ import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
 import AllProducts from "./admin/AllProducts";
 import EditProduct from "./admin/EditProduct";
-import AdminNotifications from "./admin/Notifications";
 import AllOrders from "./admin/Ordered";
 import ViewOrder from "./admin/ViewOrder";
 /* Admin Components Here */
@@ -205,16 +204,6 @@ const MyRoutes = [
             <AdminProdtection>
                 <Layouts>
                     <ViewOrder />
-                </Layouts>
-            </AdminProdtection>
-        )
-    },
-    {
-        path: "/admin/notifications",
-        element: (
-            <AdminProdtection>
-                <Layouts>
-                    <AdminNotifications />
                 </Layouts>
             </AdminProdtection>
         )

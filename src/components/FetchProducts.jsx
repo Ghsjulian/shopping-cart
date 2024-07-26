@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
+import { isAdmin } from "../Cookies";
 
 const FetchProducts = ({ category }) => {
     const navigate = useNavigate();
@@ -58,13 +59,29 @@ const FetchProducts = ({ category }) => {
                                         <i className="bx bx-show"></i>
                                         <span>View Product</span>
                                     </NavLink>
-                                    <NavLink
-                                        onClick={() => addToCart(product,product.product_desc.price, 1)}
-                                        to="#"
-                                    >
-                                        <i className="bx bxs-cart-add"></i>
-                                        <span>Add Cart</span>
-                                    </NavLink>
+                                    {!isAdmin() && (
+                                        <NavLink
+                                            onClick={() =>
+                                                addToCart(
+                                                    product,
+                                                    product.product_desc.price,
+                                                    1
+                                                )
+                                            }
+                                            to="#"
+                                        >
+                                            <i className="bx bxs-cart-add"></i>
+                                            <span>Add Cart</span>
+                                        </NavLink>
+                                    )}
+                                    {isAdmin() && (
+                                        <NavLink
+                                            to={`/admin/edit-product/${product._id}`}
+                                        >
+                                            <i className="bx bx-pen"></i>
+                                            <span>Edit Product</span>
+                                        </NavLink>
+                                    )}
                                 </div>
                             </div>
                         );
