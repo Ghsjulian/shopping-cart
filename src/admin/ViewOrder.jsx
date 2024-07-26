@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../context/useCart";
-import { getInfo, isAdmin } from "../Cookies";
+import { getInfo } from "../Cookies";
 
-const AllOrders = () => {
-    document.title = "Your Order List - See Your Order List | Shopping Cart";
+const ViewOrder = () => {
+    const { userId } = useParams();
+    document.title = "View Order - See Order | Shopping Cart";
     const apiUrl = import.meta.env.VITE_API_URL;
     const { cart, getCart, dispatch } = useCart();
     const navigate = useNavigate();
@@ -14,14 +15,17 @@ const AllOrders = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState(null);
     const [data, setData] = useState(null);
-    const viewOrder = id => {
-        navigate(`/admin/view-order/${id}`);
+    const viewProduct = id => {
+        navigate(`/view-product/${id}`);
     };
-    const fetchAdminNoti = async () => {
+    const fetchOrder = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(apiUrl + "/admin/orders");
+            const response = await axios.get(
+                apiUrl + "/get-order/" + getInfo().userId
+            );
             if (response.data) {
+                setProducts(response.data.products);
                 setData(response.data);
             } else {
                 setIsLoading(false);
@@ -32,72 +36,48 @@ const AllOrders = () => {
         }
     };
     useEffect(() => {
-        if (isAdmin()) {
-            fetchAdminNoti();
-            if (isLoading) {
-                return;
-            }
-        }
+        fetchOrder();
         if (isLoading) {
             return;
         }
-    }, []);
+    }, [userId]);
 
     return (
         <section data-aos="zoom-in" id="view" className="page">
-            {data && (
+            {products && (
                 <h2>
-                    Your Order - <span>{data.length}</span>
+                    Your Order - <span>List</span>
                 </h2>
             )}
-            {data &&
-                data.map((user, index) => {
+            {products &&
+                products.map((product, index) => {
                     return (
                         <>
                             <div className="cart" key={index}>
-                                <div
-                                    id="cart-col"
-                                    className="cart-col order-info"
-                                >
-                                    {/*
-                                    <img src="/ss_demo/" />*/}
+                                <div id="cart-col" className="cart-col">
+                                    <img src={product.product_img} />
                                     <div className="price-col">
-                                        <h3>Index ID : {index + 1}</h3>
-
+                                        <span>{product.product_title}</span>
                                         <span>
-                                            User Name : {user.user_name}
-                                        </span>
-                                        <span>
-                                            User Email : {user.user_email}
-                                        </span>
-                                        <span>User ID : {user.userId}</span>
-                                        <span>Order ID : {user._id}</span>
-                                        <span>
-                                            Total Products :{" "}
-                                            {user.products.length}
-                                        </span>
-                                        <span>
-                                            Order Amount :
+                                            Price :
                                             <span id="price">
-                                                {user.total_price}
+                                                {product.price}
                                             </span>
                                         </span>
                                         <span>
-                                            Payment Status :{" "}
-                                            {user.payment_status}
+                                            Your Quantity : {product.quantity}
                                         </span>
-                                        <span>Payment ID : {user.userId}</span>
-
-                                        <div className="btn-section">
-                                            <NavLink
-                                                to={`/admin/view-order/${user.userId}`}
-                                            >
-                                                View Products
-                                            </NavLink>
-                                            <NavLink to="#">
-                                                Confirm Order
-                                            </NavLink>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div className="cart-col">
+                                    <div id="action-btn">
+                                        <button
+                                            onClick={() =>
+                                                viewProduct(product.product_id)
+                                            }
+                                        >
+                                            <i className="bx bx-show"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +85,7 @@ const AllOrders = () => {
                     );
                 })}
 
-            {!data && (
+            {!products && (
                 <div
                     className="signup-form"
                     style={{
@@ -135,8 +115,31 @@ const AllOrders = () => {
                     </h4>
                 </div>
             )}
+
+            {data && (
+                <div className="total" style={{ flexDirection: "column" }}>
+                    <h4
+                        style={{
+                            fontSize: "18px",
+                            textAlign: "center",
+                            margin: ".5rem auto"
+                        }}
+                    >
+                        Total Price : <span>{data.total_price}</span>
+                    </h4>
+                    <h4
+                        style={{
+                            fontSize: "18px",
+                            textAlign: "center",
+                            margin: ".5rem auto"
+                        }}
+                    >
+                        Payment Status : <span>{data.payment_status}</span>
+                    </h4>
+                </div>
+            )}
         </section>
     );
 };
 
-export default AllOrders;
+export default ViewOrder;

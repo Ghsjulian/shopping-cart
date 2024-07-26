@@ -450,7 +450,7 @@ const Header = () => {
                                     )}
                                 </NavLink>
                             )}
-                            {isAdmin() && getInfo().token && (
+                            {isAdmin() && (
                                 <>
                                     <NavLink to="/admin/notifications">
                                         <i className="bx bx-bell"></i>

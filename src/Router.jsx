@@ -24,6 +24,8 @@ import AddProduct from "./admin/AddProduct";
 import AllProducts from "./admin/AllProducts";
 import EditProduct from "./admin/EditProduct";
 import AdminNotifications from "./admin/Notifications";
+import AllOrders from "./admin/Ordered";
+import ViewOrder from "./admin/ViewOrder";
 /* Admin Components Here */
 
 const MyRoutes = [
@@ -183,6 +185,26 @@ const MyRoutes = [
             <AdminProdtection>
                 <Layouts>
                     <EditProduct />
+                </Layouts>
+            </AdminProdtection>
+        )
+    },
+    {
+        path: "/admin/orders",
+        element: (
+            <AdminProdtection>
+                <Layouts>
+                    <AllOrders />
+                </Layouts>
+            </AdminProdtection>
+        )
+    },
+    {
+        path: "/admin/view-order/:userId",
+        element: (
+            <AdminProdtection>
+                <Layouts>
+                    <ViewOrder />
                 </Layouts>
             </AdminProdtection>
         )
