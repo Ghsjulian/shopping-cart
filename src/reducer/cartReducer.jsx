@@ -5,7 +5,10 @@ const cartReducer = (state, action) => {
             return { ...state, cart: [...state.cart, init] };
         case "ADD_TO_CART":
             const { product } = action.payload;
-            localStorage.setItem("cartList", JSON.stringify([...state.cart,product]));
+            localStorage.setItem(
+                "cartList",
+                JSON.stringify([...state.cart, product])
+            );
             return { ...state, cart: [...state.cart, product] };
         case "SET_QUANTITY":
             const { product_id, price, quantity } = action.payload;
@@ -42,6 +45,8 @@ const cartReducer = (state, action) => {
                 ...state,
                 cart: filter
             };
+        case "CLEAR_CART":
+            return { ...state, cart: [] };
         default:
             throw new Error();
     }

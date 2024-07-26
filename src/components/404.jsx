@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import notfound from "../assets/img/404.png";
 
 const NotFound = () => {
-    document.title = "Error 404 - Page Not Found | The URL Doesn't Exist | Path Doesn't Exist"
+    document.title =
+        "Error 404 - Page Not Found | The URL Doesn't Exist | Path Doesn't Exist";
     return (
         <section
             style={{
@@ -28,25 +29,27 @@ const NotFound = () => {
                         margin: "0.3rem auto"
                     }}
                     src={notfound}
-                    alt="404 - Page Not Found!"
+                    alt="404 - Page Not Found !"
                 />
                 <h2
                     style={{
                         margin: "0.7rem auto",
                         color: "#ffffff",
-                        fontWeight: "500"
+                        fontWeight: "900"
                     }}
                 >
                     Page Not Found !
                 </h2>
                 <NavLink
                     style={{
-                        fontSize: "30px",
+                        fontSize: "32px",
                         textDecoration: "none",
+                        backgroundColor: "transparent",
                         outline: "none",
                         color: "#88d300",
-                        fontWeight: "600",
-                        margin: "0.7rem auto"
+                        fontWeight: "900",
+                        margin: "0.8rem auto",
+                        cursor: "pointer"
                     }}
                     to="/"
                 >

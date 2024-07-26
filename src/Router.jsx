@@ -17,6 +17,7 @@ import ViewProduct from "./components/ViewProduct";
 import Cart from "./components/Cart";
 import SearchView from "./components/SearchView";
 import ConfirmOrder from "./components/ConfirmOrder";
+import Notifications from "./components/Notifications";
 /* Admin Components Here */
 import Dashboard from "./admin/Dashboard";
 import AddProduct from "./admin/AddProduct";
@@ -104,6 +105,16 @@ const MyRoutes = [
             <PrivatePath>
                 <Layouts>
                     <Ordered />
+                </Layouts>
+            </PrivatePath>
+        )
+    },
+    {
+        path: "/notifications",
+        element: (
+            <PrivatePath>
+                <Layouts>
+                    <Notifications />
                 </Layouts>
             </PrivatePath>
         )

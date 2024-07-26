@@ -5,7 +5,7 @@ import { useCart } from "../context/useCart";
 
 const ConfirmOrder = () => {
     document.title = "Login To Your Account | Shopping Cart";
-    const { getCart } = useCart();
+    const { getCart, dispatch } = useCart();
     const { userid, price } = useParams();
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
@@ -18,11 +18,13 @@ const ConfirmOrder = () => {
         user_phone: "",
         user_address: "",
         payment_type: "",
-        total_price : price,
+        total_price: price,
         payment_status: "paid",
         userId: getInfo().userId,
         token: getInfo().token,
-        products: getCart() || []
+        products: getCart() || [],
+        message : `${getCart().length} Order Has Been Placed , Your Product Will Be 
+        deleveried With In 12 Hours.`
     });
     const handleChange = event => {
         setAddress({ ...address, [event.target.name]: event.target.value });
@@ -61,6 +63,10 @@ const ConfirmOrder = () => {
             btnRef.current.textContent = "Confirm Order";
             if (responseData.type) {
                 showMessage(responseData.type, responseData.success);
+                localStorage.setItem("cartList","[]");
+                dispatch({
+                    type: "CLEAR_CART"
+                });
             } else {
                 showMessage(responseData.type, responseData.error);
             }

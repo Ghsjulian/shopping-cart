@@ -9,10 +9,15 @@ const Cart = () => {
     const { cart, getCart, dispatch } = useCart();
     const navigate = useNavigate();
     const priceRef = useRef(null);
+    const totalRef = useRef(null);
     const [totalPrice, setTotalPrice] = useState(0);
     const createOrder = () => {
-        let price = priceRef.current.textContent
-        navigate(`/confirm-order/${getInfo().userId}/${price}`);
+        if (cart.length > 0) {
+            let price = priceRef.current.textContent;
+            navigate(`/confirm-order/${getInfo().userId}/${price}`);
+        } else {
+            navigate("/no-cart/error-404");
+        }
     };
     const viewProduct = id => {
         navigate(`/view-product/${id}`);
@@ -37,6 +42,8 @@ const Cart = () => {
                 netprice += prices[index];
             }
             priceRef.current.textContent = netprice + "TK BDT";
+        } else {
+            priceRef.current.textContent = "";
         }
     };
     const handleQuantity = product => {
@@ -81,77 +88,91 @@ const Cart = () => {
         });
     };
     useEffect(() => {
-        if (cart) {
+        if (cart.length > 0) {
+            totalRef.current.style.display = "flex";
             setTotal();
+        }
+        if (cart.length == 0) {
+            totalRef.current.style.display = "none";
+            priceRef.current.textContent = "";
         }
         return;
     }, [cart]);
 
     return (
         <section data-aos="zoom-in" id="view" className="page">
-            {/* <Loader text={{ msg: "Loading..." }} />*/}
-            <h2>
-                Your Cart - <span>{cart.length}</span>
-            </h2>
-            {cart.map((product, index) => {
-                return (
-                    <div className="cart" key={index}>
-                        <div id="cart-col" className="cart-col">
-                            <img src={product.product_img} />
-                            <div className="price-col">
-                                <span>{product.product_title}</span>
-                                <span>
-                                    Price :{" "}
-                                    <span id="price">{product.price}</span>
-                                </span>
-                                <span>Your Quantity : {product.quantity}</span>
+            {
+                cart.length >0 &&  <h2>
+                                Your Cart - <span>{cart.length}</span>
+                            </h2>
+            }
+            {cart &&
+                cart.map((product, index) => {
+                    return (
+                        <>
+                            <div className="cart" key={index}>
+                                <div id="cart-col" className="cart-col">
+                                    <img src={product.product_img} />
+                                    <div className="price-col">
+                                        <span>{product.product_title}</span>
+                                        <span>
+                                            Price :{" "}
+                                            <span id="price">
+                                                {product.price}
+                                            </span>
+                                        </span>
+                                        <span>
+                                            Your Quantity : {product.quantity}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="cart-col">
+                                    <div id="cart-btn">
+                                        <button
+                                            onClick={e => {
+                                                e.preventDefault();
+                                                handleQuantity(product);
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                        <button
+                                            onClick={e => {
+                                                e.preventDefault();
+                                                decreaseQuantity(product);
+                                            }}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                    <div id="action-btn">
+                                        <button
+                                            onClick={() =>
+                                                viewProduct(product.product_id)
+                                            }
+                                        >
+                                            <i className="bx bx-show"></i>
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                removeCart(product);
+                                            }}
+                                        >
+                                            <i className="bx bxs-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="cart-col">
-                            <div id="cart-btn">
-                                <button
-                                    onClick={e => {
-                                        e.preventDefault();
-                                        handleQuantity(product);
-                                    }}
-                                >
-                                    +
-                                </button>
-                                <button
-                                    onClick={e => {
-                                        e.preventDefault();
-                                        decreaseQuantity(product);
-                                    }}
-                                >
-                                    -
-                                </button>
-                            </div>
-                            <div id="action-btn">
-                                <button
-                                    onClick={() =>
-                                        viewProduct(product.product_id)
-                                    }
-                                >
-                                    <i className="bx bx-show"></i>
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        removeCart(product);
-                                    }}
-                                >
-                                    <i className="bx bxs-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                );
-            })}
-            {cart.length == 0 && (
+                        </>
+                    );
+                })}
+            {!cart.length && (
                 <div
                     className="signup-form"
                     style={{
                         width: "90%",
-                        maxWidth: "650px"
+                        maxWidth: "650px",
+                        boxShadow: "none"
                     }}
                 >
                     <h2>
@@ -176,7 +197,7 @@ const Cart = () => {
                 </div>
             )}
             {cart && (
-                <div className="total">
+                <div ref={totalRef} className="total">
                     <h4>
                         Total Price : <span ref={priceRef}></span>
                     </h4>

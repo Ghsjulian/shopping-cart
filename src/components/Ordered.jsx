@@ -44,12 +44,12 @@ const Ordered = () => {
 
     return (
         <section data-aos="zoom-in" id="view" className="page">
-            <h2>
-                Your Order - <span>List</span>
-            </h2>
             {products &&
                 products.map((product, index) => {
-                    return (
+                    return (<>
+                        <h2>
+                Your Order - <span>List</span>
+            </h2>
                         <div className="cart" key={index}>
                             <div id="cart-col" className="cart-col">
                                 <img src={product.product_img} />
@@ -78,7 +78,7 @@ const Ordered = () => {
                                 </div>
                             </div>
                         </div>
-                    );
+                   </> );
                 })}
 
             {!products && (
@@ -86,7 +86,7 @@ const Ordered = () => {
                     className="signup-form"
                     style={{
                         width: "90%",
-                        maxWidth: "650px"
+                        maxWidth: "650px", boxShadow: "none"
                     }}
                 >
                     <h2>
@@ -97,7 +97,7 @@ const Ordered = () => {
                                 fontSize: "5rem",
                                 margin: ".5rem auto"
                             }}
-                            className="ri ri-shopping-basket-line"
+                            className="ri ri-shopping-bag-line"
                         ></i>
                     </h2>
                     <h4
@@ -106,7 +106,7 @@ const Ordered = () => {
                             margin: ".5rem auto"
                         }}
                     >
-                        No Item In Cart
+                        You Don't Have Any Order !
                     </h4>
                 </div>
             )}
@@ -120,6 +120,14 @@ const Ordered = () => {
                         }}
                     >
                         Total Price : <span>{data.total_price}</span>
+                    </h4>
+                    <h4
+                        style={{
+                            textAlign: "center",
+                            margin: ".5rem auto"
+                        }}
+                    >
+                        Payment Status : <span>{data.payment_status}</span>
                     </h4>
                 </div>
             )}

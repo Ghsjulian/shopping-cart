@@ -91,7 +91,8 @@ header,
     background-size: 100% 100%;
     */
 }
-.header .search-container, #mobile-cart {
+.header .search-container,
+#mobile-cart {
     display: none;
 }
 .header img {
@@ -426,8 +427,13 @@ footer,
     justify-content: center;
 }
 .footer p a {
-    color: #ffde11;
-    font-weight: 700;
+    color: #ffd10c;
+    font-weight: 900;
+}
+.footer p a:hover {
+    color: #45c100;
+    background: transparent;
+    transform: scale(1.1);
 }
 section #heading {
     text-align: center;

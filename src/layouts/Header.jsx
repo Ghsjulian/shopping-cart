@@ -177,9 +177,9 @@ const Header = () => {
                                 <li>
                                     <NavLink
                                         onClick={closeHeader}
-                                        to="/notification"
+                                        to="/notifications"
                                         className={
-                                            path == "/notification"
+                                            path == "/notifications"
                                                 ? "active"
                                                 : ""
                                         }
@@ -352,7 +352,7 @@ const Header = () => {
                     </NavLink>
                     {getInfo().token && (
                         <>
-                            <NavLink to="/notification">
+                            <NavLink to="/notifications">
                                 <i className="bx bx-bell"></i>
                             </NavLink>
                             <NavLink to="/cart">
