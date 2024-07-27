@@ -27,7 +27,7 @@ const NotFound = () => {
                         objectFit: "cover",
                         margin: "0.3rem auto"
                     }}
-                    src="/images/404.png"
+                    src="/icons/404.png"
                     alt="404 - Page Not Found !"
                 />
                 <h2
