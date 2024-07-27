@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import About from "../components/AboutSection";
-import Projects from "../components/Projects";
-import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import LatestProducts from "../components/LatestProducts";
 import { getInfo, isAdmin } from "../Cookies";
@@ -17,9 +15,9 @@ const Home = () => {
     const navigate = useNavigate();
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" }), [];
-        if(isAdmin()){
-            navigate("/admin/dashboard")
-        }
+        // if (isAdmin()) {
+//             navigate("/admin/dashboard");
+//         }
     }, []);
 
     return (

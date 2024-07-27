@@ -64,6 +64,7 @@ const ConfirmOrder = () => {
             if (responseData.type) {
                 showMessage(responseData.type, responseData.success);
                 localStorage.setItem("cartList","[]");
+                navigate("/notifications")
                 dispatch({
                     type: "CLEAR_CART"
                 });

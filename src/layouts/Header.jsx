@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import ghs from "../assets/img/ghs_10.png";
 import { getInfo, isAdmin, deleteCookie } from "../Cookies";
 import { useCart } from "../context/useCart";
 import axios from "axios";
@@ -71,7 +70,6 @@ const Header = () => {
                 setNoti(response.data.message);
             } else {
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -85,7 +83,6 @@ const Header = () => {
                 setAdminNoti(response.data);
             } else {
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -456,7 +453,7 @@ const Header = () => {
                         <>
                             <NavLink to="/admin/orders">
                                 <i className="bx bx-bell"></i>
-                                {adminNoti &&adminNoti.length > 0 && (
+                                {adminNoti && adminNoti.length > 0 && (
                                     <span
                                         style={{
                                             backgroundColor: "#0bc900"
@@ -469,7 +466,7 @@ const Header = () => {
                             </NavLink>
                             <NavLink to="/about">
                                 <img
-                                    src="/ss_demo/android-chrome-512x512.png"
+                                    src="/icons/android-chrome-512x512.png"
                                     alt="Admin Avtar"
                                 />
                             </NavLink>

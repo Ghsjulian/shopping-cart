@@ -1,5 +1,4 @@
 import React from "react";
-import ghs from "../assets/img/bg_3.png";
 
 const Contact = ({ isTrue }) => {
     if(isTrue){

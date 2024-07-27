@@ -1,15 +1,18 @@
 import React from "react";
-import ghs from "../assets/img/ghs_10.png";
 
 const Profile = () => {
-        document.title = "User Profile | Shopping Cart";
+    document.title = "User Profile | Shopping Cart";
     return (
         <section data-aos="zoom-in" className="page" id="products">
             <div className="profile">
                 <button id="edit">
                     <i className="bx bxs-edit"></i>
                 </button>
-                <img id="user-img" src={ghs} alt="User Profile Image" />
+                <img
+                    id="user-img"
+                    src="./images/ghs-dev.jpg"
+                    alt="Ghs Julian Web Developer Designer"
+                />
                 <h2>Ghs Julian</h2>
                 <h3>ghsjulian@gmail.com</h3>
                 <div className="btn-area">

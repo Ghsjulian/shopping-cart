@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
-import { isAdmin } from "../Cookies";
+import { isAdmin,getInfo } from "../Cookies";
 
 const FetchProducts = ({ category }) => {
     const navigate = useNavigate();
@@ -25,7 +25,6 @@ const FetchProducts = ({ category }) => {
             } else {
                 setIsProducts(false);
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -59,14 +58,22 @@ const FetchProducts = ({ category }) => {
                                         <i className="bx bx-show"></i>
                                         <span>View Product</span>
                                     </NavLink>
-                                    {!isAdmin() && (
+                                    {!isAdmin() && isCart(product._id) ==0&&(
                                         <NavLink
-                                            onClick={() =>
+                                            onClick={() =>{
+                                               if (
+                                                    getInfo().userId &&
+                                                    getInfo().token
+                                                ){
                                                 addToCart(
                                                     product,
                                                     product.product_desc.price,
                                                     1
                                                 )
+                                                } else {
+                                                    navigate("/login")
+                                                }
+                                            }
                                             }
                                             to="#"
                                         >
@@ -74,6 +81,18 @@ const FetchProducts = ({ category }) => {
                                             <span>Add Cart</span>
                                         </NavLink>
                                     )}
+                                    {isCart(product._id).length > 0 && (
+                                        <NavLink
+                                            style={{
+                                                padding: ".1rem .5rem"
+                                            }}
+                                            to="/cart"
+                                        >
+                                            <i className="ri ri-checkbox-circle-line"></i>
+                                            <span>Added</span>
+                                        </NavLink>
+                                    )}
+                                    
                                     {isAdmin() && (
                                         <NavLink
                                             to={`/admin/edit-product/${product._id}`}

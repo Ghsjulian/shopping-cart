@@ -1,5 +1,4 @@
 import React from "react";
-import ghs from "../assets/img/bg_2.png";
 
 const AboutSection = ({isTrue}) => {
    if(isTrue){

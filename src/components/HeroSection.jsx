@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ReactTyped } from "react-typed";
-import ghs from "../assets/img/ghs_10.png";
 import Slider from "../slider/HeroSlide";
 
 const HeroSection = () => {

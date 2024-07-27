@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
-import ghs from "../assets/products/tshirt_1.png";
 
 const AddProduct = () => {
         document.title = "Add New Product - Shopping Cart";

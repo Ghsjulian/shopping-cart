@@ -53,7 +53,7 @@ const Ordered = () => {
                 products.map((product, index) => {
                     return (
                         <>
-                            <div className="cart" key={index}>
+                            <div className="cart" key={index+5}>
                                 <div id="cart-col" className="cart-col">
                                     <img src={product.product_img} />
                                     <div className="price-col">

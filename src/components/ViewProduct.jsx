@@ -3,7 +3,6 @@ import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { getInfo, isAdmin } from "../Cookies";
-import product from "../assets/products/tshirt_1.png";
 import FetchProducts from "./FetchProducts";
 import { useCart } from "../context/useCart";
 
@@ -75,7 +74,6 @@ const ViewProduct = () => {
                             src={products.product_img}
                             alt="Product Image"
                         />
-                        {alert(isCart(products._id))}
                         <h2>{products.product_title}</h2>
 
                         <h4>
@@ -147,23 +145,39 @@ const ViewProduct = () => {
                                         </button>
                                     </div>
                                     <div className="flex-btn">
-                                        <a
-                                            onClick={() => {
-                                                addToCart(
-                                                    products,
-                                                    currentPrice
-                                                        ? currentPrice
-                                                        : products.product_desc
-                                                              .price,
-                                                    quantity ? quantity : 1
-                                                );
-                                            }}
-                                            id="cart"
-                                            href="#"
-                                        >
-                                            <i className="bx bx-cart-add"></i>
-                                            <span>Add Cart</span>
-                                        </a>
+                                        {isCart(products._id) == 0 && (
+                                            <a
+                                                onClick={() => {
+                                                    if (
+                                                    getInfo().userId &&
+                                                    getInfo().token
+                                                ){
+                                                    addToCart(
+                                                        products,
+                                                        currentPrice
+                                                            ? currentPrice
+                                                            : products
+                                                                  .product_desc
+                                                                  .price,
+                                                        quantity ? quantity : 1
+                                                    );
+                                                } else {
+                                                    navigate("/login")
+                                                }
+                                                }}
+                                                id="cart"
+                                                href="#"
+                                            >
+                                                <i className="bx bx-cart-add"></i>
+                                                <span>Add Cart</span>
+                                            </a>
+                                        )}
+                                        {isCart(products._id).length > 0 && (
+                                            <NavLink id="cart" to="/cart">
+                                                <i className="ri ri-checkbox-circle-line"></i>
+                                                <span>Added</span>
+                                            </NavLink>
+                                        )}
                                         <a id="fav" href="#">
                                             <i className="bx bx-heart"></i>
                                             <span>Add Favorites</span>

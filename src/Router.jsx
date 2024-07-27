@@ -6,8 +6,6 @@ import AdminProdtection from "./Protection/AdminProdtection";
 import Home from "./pages/Home";
 import About from "./components/AboutSection";
 import Contact from "./components/Contact";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import NotFound from "./components/404";

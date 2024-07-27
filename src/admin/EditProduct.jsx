@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
-import ghs from "../assets/products/tshirt_1.png";
 
 const EditProduct = () => {
         document.title = "Edit And Update Existing Product - Shopping Cart";

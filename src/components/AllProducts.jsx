@@ -3,8 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 import { useCart } from "../context/useCart";
-import {isAdmin} from "../Cookies"
-
+import { getInfo ,isAdmin } from "../Cookies";
 
 const AllProducts = () => {
     const navigate = useNavigate();
@@ -13,7 +12,6 @@ const AllProducts = () => {
     const [products, setProducts] = useState(null);
     const [isProducts, setIsProducts] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    
 
     const fetchProduct = async () => {
         try {
@@ -25,7 +23,6 @@ const AllProducts = () => {
             } else {
                 setIsProducts(false);
                 setIsLoading(false);
-                console.log("No Products Found");
             }
         } catch (error) {
             console.log(error);
@@ -60,16 +57,39 @@ const AllProducts = () => {
                                         <i className="bx bx-show"></i>
                                         <span>View Product</span>
                                     </NavLink>
-                                    
-                                    {!isAdmin() && (
+
+                                    {!isAdmin() && isCart(product._id) == 0 && (
                                         <NavLink
-                                        onClick={() => addToCart(product,product.product_desc.price, 1)}
-                                        to="#"
-                                    >
-                                        <i className="bx bxs-cart-add"></i>
-                                        <span>Add Cart</span>
-                                    </NavLink>
+                                            onClick={() =>{
+                                            if(getInfo().userId && getInfo().token){
+                                                addToCart(
+                                                    product,
+                                                    product.product_desc.price,
+                                                    1
+                                                )
+                                            } else {
+                                                navigate("/login")
+                                            }
+                                            }
+                                            }
+                                            to="#"
+                                        >
+                                            <i className="bx bxs-cart-add"></i>
+                                            <span>Add Cart</span>
+                                        </NavLink>
                                     )}
+                                    {isCart(product._id).length > 0 && (
+                                        <NavLink
+                                            style={{
+                                                padding: ".1rem .5rem"
+                                            }}
+                                            to="/cart"
+                                        >
+                                            <i className="ri ri-checkbox-circle-line"></i>
+                                            <span>Added</span>
+                                        </NavLink>
+                                    )}
+
                                     {isAdmin() && (
                                         <NavLink
                                             to={`/admin/edit-product/${product._id}`}
@@ -78,7 +98,6 @@ const AllProducts = () => {
                                             <span>Edit Product</span>
                                         </NavLink>
                                     )}
-                                    
                                 </div>
                             </div>
                         );

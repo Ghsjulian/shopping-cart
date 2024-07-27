@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import notfound from "../assets/img/404.png";
 
 const NotFound = () => {
     document.title =
@@ -28,7 +27,7 @@ const NotFound = () => {
                         objectFit: "cover",
                         margin: "0.3rem auto"
                     }}
-                    src={notfound}
+                    src="/images/404.png"
                     alt="404 - Page Not Found !"
                 />
                 <h2
