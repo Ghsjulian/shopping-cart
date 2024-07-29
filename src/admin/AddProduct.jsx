@@ -41,7 +41,7 @@ const AddProduct = () => {
         const formData = new FormData();
         formData.append("product_img", file);
         formData.append("data", JSON.stringify(products));
-        console.log(file);
+       // console.log(file);
         if (
             file &&
             products.product_title &&

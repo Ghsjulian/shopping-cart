@@ -113,10 +113,10 @@ const Signup = () => {
             const responseData = await response.json();
             btnRef.current.textContent = "Signup";
             if (responseData.type) {
-                const obj = JSON.stringify(responseData.user);
-                localStorage.setItem("user", obj);
+                const data = JSON.stringify(responseData.data);
+                setCookie("e-comUser", data);
                 showMessage(responseData.type, responseData.success);
-                openOtPForm();
+                navigate("/")
             } else {
                 showMessage(responseData.type, responseData.error);
             }
@@ -180,7 +180,9 @@ const Signup = () => {
                 className="signup-form"
                 ref={otpRef}
             >
-                <span id="skip" onClick={closeOtPForm}>Skip Now</span>
+                <span id="skip" onClick={closeOtPForm}>
+                    Skip Now
+                </span>
                 <h3> Please Check Your Email</h3>
                 <span ref={otpMessage} id="message"></span>
                 <input
