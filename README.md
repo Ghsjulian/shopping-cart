@@ -1,7 +1,7 @@
 <center>
 <br><br>
 <center>
-<img align="center" src="public/ss_demo/android-chrome-512x512.png" width="250" height="250"><br>
+<img align="center" src="ss_demo/android-chrome-512x512.png" width="250" height="250"><br>
 </center>
 <h4 align="center">Web Developer & Designer - Ghs Julian</h4>
 </b>
